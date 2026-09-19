@@ -1,5 +1,6 @@
 import Button from '@mui/material/Button';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import './App.css';
 import heroImg from './assets/hero.png';
 import reactLogo from './assets/react.svg';
@@ -7,6 +8,7 @@ import viteLogo from './assets/vite.svg';
 
 function App() {
   const [count, setCount] = useState(0);
+  const [t] = useTranslation();
 
   return (
     <>
@@ -23,7 +25,7 @@ function App() {
           </p>
         </div>
         <Button variant="contained" onClick={() => setCount(count => count + 1)}>
-          Test
+          {t('actions.save')}
         </Button>
         <button type="button" className="counter" onClick={() => setCount(count => count + 1)}>
           Count is {count}

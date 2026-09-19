@@ -2,11 +2,18 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
+import { initTranslations } from './translations/index.ts';
 
-const root = createRoot(document.getElementById('root') as HTMLElement);
+const main = async (): Promise<void> => {
+  await initTranslations();
 
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+  const root = createRoot(document.getElementById('root') as HTMLElement);
+
+  root.render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
+};
+
+void main();
