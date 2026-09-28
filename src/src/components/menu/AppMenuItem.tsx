@@ -1,6 +1,8 @@
 import { ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { NavLink } from 'react-router';
 
 export type TMenuItemProps = {
+  to: string;
   label: string;
   icon: React.ReactNode;
   isExpanded: boolean;
@@ -8,11 +10,13 @@ export type TMenuItemProps = {
 };
 
 export function AppMenuItem(props: TMenuItemProps) {
-  const { isExpanded: isOpen, label, icon, onClick } = props;
+  const { isExpanded: isOpen, to, label, icon, onClick } = props;
 
   return (
     <ListItem key={label} disablePadding sx={{ display: 'block' }}>
       <ListItemButton
+        component={NavLink}
+        to={to}
         onClick={onClick}
         sx={[{ height: 48, px: 2.5 }, isOpen ? { justifyContent: 'initial' } : { justifyContent: 'center' }]}
       >

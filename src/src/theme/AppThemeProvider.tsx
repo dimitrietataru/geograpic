@@ -12,7 +12,9 @@ const createAppTheme = (mode: ThemeMode) =>
     ...(mode === 'light' ? lightTheme : darkTheme),
   });
 
-function AppThemeProvider({ children }: { children: React.ReactNode }) {
+function AppThemeProvider(props: React.PropsWithChildren) {
+  const { children } = props;
+
   const [mode, setMode] = useState<ThemeMode>(() => {
     const localTheme = localStorage.getItem('themeMode');
     return localTheme === 'dark' ? 'dark' : 'light';
