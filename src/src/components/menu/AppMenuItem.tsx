@@ -18,7 +18,19 @@ export function AppMenuItem(props: TMenuItemProps) {
         component={NavLink}
         to={to}
         onClick={onClick}
-        sx={[{ height: 48, px: 2.5 }, isOpen ? { justifyContent: 'initial' } : { justifyContent: 'center' }]}
+        sx={[
+          {
+            '&.active': {
+              backgroundColor: 'action.selected',
+              '& .MuiListItemIcon-root': { color: 'primary.main' },
+              '& .MuiListItemText-primary': { fontWeight: 600 },
+            },
+            '&:hover': {
+              backgroundColor: 'action.hover',
+            },
+          },
+          isOpen ? { justifyContent: 'initial' } : { justifyContent: 'center' },
+        ]}
       >
         <ListItemIcon sx={[{ minWidth: 0, justifyContent: 'center' }, isOpen ? { mr: 3 } : { mr: 'auto' }]}>
           {icon}

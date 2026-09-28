@@ -7,6 +7,14 @@ export const baseTheme: ThemeOptions = {
         disableElevation: true,
       },
     },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          height: 48,
+          px: 2,
+        },
+      },
+    },
     MuiIconButton: {
       styleOverrides: {
         root: {
