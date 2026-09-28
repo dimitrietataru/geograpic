@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
-import './index.css';
+// import './index.css';
 import { initTranslations } from './translations/index.ts';
 
 const main = async (): Promise<void> => {

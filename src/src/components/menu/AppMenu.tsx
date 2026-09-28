@@ -5,10 +5,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import PublicIcon from '@mui/icons-material/Public';
 import { Box, Divider, Drawer, IconButton, List } from '@mui/material';
 import { useState } from 'react';
+import ThemeSwitcher from '../theme';
 import { AppMenuItem } from './AppMenuItem';
 
 function AppMenu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const widthClosed = 65;
   const widthOpened = 240;
@@ -53,49 +54,61 @@ function AppMenu() {
       })}
     >
       <Box
-        sx={[
-          { display: 'flex', alignItems: 'center', height: '48px' },
-          isOpen ? { justifyContent: 'flex-end', paddingRight: 2 } : { justifyContent: 'center' },
-        ]}
+        sx={{
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          // alignContent: 'space-between',
+          justifyContent: 'space-between',
+        }}
       >
-        {isOpen && (
-          <Box>
-            <IconButton onClick={handleDrawerClose}>
-              <ChevronLeftIcon />
-            </IconButton>
+        <Box className="menuTop">
+          <Box
+            className="menuToggle"
+            sx={[
+              { display: 'flex', alignItems: 'center', height: '48px' },
+              isOpen ? { justifyContent: 'flex-end', paddingRight: 2 } : { justifyContent: 'center' },
+            ]}
+          >
+            {isOpen && (
+              <IconButton onClick={handleDrawerClose}>
+                <ChevronLeftIcon />
+              </IconButton>
+            )}
+            {!isOpen && (
+              <IconButton onClick={handleDrawerOpen}>
+                <MenuIcon />
+              </IconButton>
+            )}
           </Box>
-        )}
-        {!isOpen && (
-          <Box>
-            <IconButton onClick={handleDrawerOpen}>
-              <MenuIcon />
-            </IconButton>
-          </Box>
-        )}
+          <Divider variant="middle" />
+          <List>
+            <AppMenuItem
+              label="Continents"
+              icon={<PublicIcon />}
+              isExpanded={isOpen}
+              onClick={handleContinentsOnClick}
+            ></AppMenuItem>
+
+            <AppMenuItem
+              label="Countries"
+              icon={<FlagIcon />}
+              isExpanded={isOpen}
+              onClick={handleCountriesOnClick}
+            ></AppMenuItem>
+
+            <AppMenuItem
+              label="Cities"
+              icon={<LocationCityIcon />}
+              isExpanded={isOpen}
+              onClick={handleCitiesOnClick}
+            ></AppMenuItem>
+          </List>
+        </Box>
+        <Box className="menuBottom">
+          <ThemeSwitcher />
+        </Box>
       </Box>
-      <Divider variant="middle" />
-      <List>
-        <AppMenuItem
-          label="Continents"
-          icon={<PublicIcon />}
-          isExpanded={isOpen}
-          onClick={handleContinentsOnClick}
-        ></AppMenuItem>
-
-        <AppMenuItem
-          label="Countries"
-          icon={<FlagIcon />}
-          isExpanded={isOpen}
-          onClick={handleCountriesOnClick}
-        ></AppMenuItem>
-
-        <AppMenuItem
-          label="Cities"
-          icon={<LocationCityIcon />}
-          isExpanded={isOpen}
-          onClick={handleCitiesOnClick}
-        ></AppMenuItem>
-      </List>
     </Drawer>
   );
 }
