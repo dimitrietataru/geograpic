@@ -3,12 +3,12 @@ import i18next from 'i18next';
 import { resources } from './resources';
 
 const options = {
-  fallbackLng: 'en',
   lng: 'en',
+  fallbackLng: 'ro',
   returnNull: false,
-  ns: ['common'],
+  ns: ['geograpi', 'common', 'menu'],
   defaultNS: 'common',
-  fallbackNS: 'geograpi',
+  fallbackNS: ['geograpi', 'common'],
   resources: resources,
   interpolation: { escapeValue: false },
   partialBundledLanguages: true,

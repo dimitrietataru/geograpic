@@ -6,11 +6,13 @@ import PublicIcon from '@mui/icons-material/Public';
 import { Box, Divider, Drawer, IconButton, List } from '@mui/material';
 import { useState } from 'react';
 import { Routes as AppRoutes } from '../../routing/routes';
+import { useMenuTranslations } from '../../translations/useAppTranslations';
 import ThemeSwitcher from '../theme';
 import { AppMenuItem } from './AppMenuItem';
 
 function AppMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [t] = useMenuTranslations();
 
   const widthClosed = 65;
   const widthOpened = 240;
@@ -59,7 +61,6 @@ function AppMenu() {
           height: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          // alignContent: 'space-between',
           justifyContent: 'space-between',
         }}
       >
@@ -86,7 +87,7 @@ function AppMenu() {
           <List>
             <AppMenuItem
               to={AppRoutes.Continents}
-              label="Continents"
+              label={t('menu.continents')}
               icon={<PublicIcon />}
               isExpanded={isOpen}
               onClick={handleContinentsOnClick}
@@ -94,7 +95,7 @@ function AppMenu() {
 
             <AppMenuItem
               to={AppRoutes.Countries}
-              label="Countries"
+              label={t('menu.countries')}
               icon={<FlagIcon />}
               isExpanded={isOpen}
               onClick={handleCountriesOnClick}
@@ -102,7 +103,7 @@ function AppMenu() {
 
             <AppMenuItem
               to={AppRoutes.Cities}
-              label="Cities"
+              label={t('menu.cities')}
               icon={<LocationCityIcon />}
               isExpanded={isOpen}
               onClick={handleCitiesOnClick}
