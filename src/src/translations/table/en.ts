@@ -6,6 +6,7 @@ const en = {
     headers: {
       id: 'Id',
       name: 'Name',
+      continent: 'Continent',
     },
     continents: {
       id: 'Id',

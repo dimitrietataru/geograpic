@@ -8,3 +8,15 @@ export const fetchContinents = createAsyncThunk(
     return fetchContinentsRequest(request);
   },
 );
+
+export const fetchAllContinents = createAsyncThunk(
+  'continents/fetch-all',
+  async (): Promise<IContinentQueryResponse> => {
+    const request = {
+      page: 1,
+      size: 10,
+    } as IContinentQueryRequest;
+
+    return fetchContinentsRequest(request);
+  },
+);

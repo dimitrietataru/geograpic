@@ -6,6 +6,7 @@ const ro = {
     headers: {
       id: 'Id',
       name: 'Nume',
+      continent: 'Continent',
     },
     continents: {
       id: 'Id',

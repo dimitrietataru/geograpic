@@ -1,7 +1,7 @@
 import isArray from 'lodash/isArray';
 import toNumber from 'lodash/toNumber';
 import toString from 'lodash/toString';
-import type { ICountry } from '../types/country';
+import type { ICountry, ICountryQueryResponse } from '../types/country';
 
 export const mapCountry = (country?: Partial<ICountry>): ICountry => {
   return {
@@ -17,4 +17,13 @@ export const mapCounties = (countries?: Partial<ICountry[]>): ICountry[] => {
   }
 
   return countries?.map(mapCountry);
+};
+
+export const mapPagedCountries = (response?: Partial<ICountryQueryResponse>): ICountryQueryResponse => {
+  return {
+    page: toNumber(response?.page),
+    size: toNumber(response?.size),
+    count: toNumber(response?.count),
+    items: mapCounties(response?.items),
+  };
 };

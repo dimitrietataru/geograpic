@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { IContinent } from '../../types/continent';
 import continentAdapter from '../adapters/continent-adapter';
-import { fetchContinents } from '../thunks/continent-thunks';
+import { fetchAllContinents, fetchContinents } from '../thunks/continent-thunks';
 
 const initialState = continentAdapter.getInitialState({
   loading: false,
@@ -51,6 +51,18 @@ const continentSlice = createSlice({
         continentAdapter.setAll(state, action.payload.items);
       })
       .addCase(fetchContinents.rejected, state => {
+        state.loading = false;
+      })
+      .addCase(fetchAllContinents.pending, state => {
+        state.loading = true;
+      })
+      .addCase(fetchAllContinents.fulfilled, (state, action) => {
+        state.loading = false;
+        state.initialLoaded = true;
+        state.count = action.payload.count;
+        continentAdapter.setAll(state, action.payload.items);
+      })
+      .addCase(fetchAllContinents.rejected, state => {
         state.loading = false;
       });
   },
