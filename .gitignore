@@ -1,2 +1,5 @@
 # NPM
 node_modules
+
+# Config
+src/public/appsettings.json
