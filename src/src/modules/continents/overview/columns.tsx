@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
-import type { IContinent } from '../../../../types/continent';
-import type { TranslatedGridColDef } from '../../../../types/translations/TranslatedGridColDef';
+import type { IContinent } from '../../../types/continent';
+import type { TranslatedGridColDef } from '../../../types/translations/TranslatedGridColDef';
 
 export const columns: TranslatedGridColDef<IContinent>[] = [
   {
@@ -8,7 +8,7 @@ export const columns: TranslatedGridColDef<IContinent>[] = [
     headerName: 'headers.id',
     sortable: true,
     filterable: false,
-    hideable: false,
+    hideable: true,
     flex: 1,
     minWidth: 120,
     maxWidth: 200,

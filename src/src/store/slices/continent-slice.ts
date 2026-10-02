@@ -5,6 +5,7 @@ import { fetchContinents } from '../thunks/continent-thunks';
 
 const initialState = continentAdapter.getInitialState({
   loading: false,
+  initialLoaded: false,
   error: null as string | null,
   count: 0,
 });
@@ -15,6 +16,9 @@ const continentSlice = createSlice({
   reducers: {
     setLoading(state, action: PayloadAction<boolean>) {
       state.loading = action.payload;
+    },
+    setInitialLoading(state, action: PayloadAction<boolean>) {
+      state.initialLoaded = action.payload;
     },
     setError(state, action: PayloadAction<string | null>) {
       state.error = action.payload;
@@ -42,6 +46,7 @@ const continentSlice = createSlice({
       })
       .addCase(fetchContinents.fulfilled, (state, action) => {
         state.loading = false;
+        state.initialLoaded = true;
         state.count = action.payload.count;
         continentAdapter.setAll(state, action.payload.items);
       })

@@ -31,35 +31,33 @@ export function useContinentFilters() {
   }, [filters]);
 
   const setFilters = useCallback(
-    (
-      updates: IContinentQueryRequest,
-      { replace, reset }: { replace: boolean; reset: boolean } = { replace: false, reset: false },
-    ) => {
+    (updates: IContinentQueryRequest, { replace = false, reset = false } = {}) => {
       setSearchParams(
         prev => {
           const next = new URLSearchParams(prev);
+
           if (reset) {
             next.set('page', '1');
-            next.set('size', '20');
+            next.set('size', '10');
+
+            return next;
+          }
+
+          next.set('page', toString(updates.page));
+          next.set('size', toString(updates.size));
+
+          if (updates.sortBy) {
+            next.set('sortBy', toString(updates.sortBy));
           } else {
-            next.set('page', toString(updates.page));
-            next.set('size', toString(updates.size));
+            next.delete('sortBy');
+            next.delete('sortDirection');
+          }
 
-            if (!updates.sortBy) {
-              next.delete('sortBy');
-              next.delete('sortDirection');
-            } else {
-              next.set('sortBy', toString(updates.sortBy));
-            }
-
-            console.log('setting-filters', prev);
-
-            if (!updates.sortDirection) {
-              next.delete('sortDirection');
-              next.delete('sortBy');
-            } else {
-              next.set('sortDirection', toString(updates.sortDirection));
-            }
+          if (updates.sortDirection) {
+            next.set('sortDirection', toString(updates.sortDirection));
+          } else {
+            next.delete('sortDirection');
+            next.delete('sortBy');
           }
 
           return next;

@@ -2,8 +2,6 @@ import { type GridSortDirection } from '@mui/x-data-grid';
 import { SortDirection } from '../../types/enums/SortDirection';
 
 export const toAppSortDirection = (sortDirection: GridSortDirection): SortDirection | undefined => {
-  console.log('mui-sort', sortDirection);
-
   switch (sortDirection) {
     case 'asc':
       return SortDirection.Ascending;
@@ -15,8 +13,6 @@ export const toAppSortDirection = (sortDirection: GridSortDirection): SortDirect
 };
 
 export const toMuiSortDirection = (sortDirection: SortDirection | string | undefined): GridSortDirection => {
-  console.log('app-sort', sortDirection);
-
   switch (sortDirection) {
     case '1':
       return 'asc' as GridSortDirection;

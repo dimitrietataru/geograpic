@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useContinentFilters } from '../../hooks/filters/useContinentFilters';
 import { useAppDispatch } from '../../store';
 import { fetchContinents } from '../../store/thunks/continent-thunks';
-import Overview from './components/overview/Overview';
+import Overview from './overview';
 
 function Continents() {
   const { filters } = useContinentFilters();
