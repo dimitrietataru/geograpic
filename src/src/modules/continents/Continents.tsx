@@ -1,27 +1,25 @@
 import { Box } from '@mui/material';
 import { useEffect } from 'react';
-import { getContinentsSelector } from '../../infrastructure/store/selectors/continent-selector';
-import { useAppDispatch, useAppSelector } from '../../infrastructure/store/store';
+import { useContinentFilters } from '../../hooks/filters/useContinentFilters';
+import { useAppDispatch } from '../../infrastructure/store/store';
 import { fetchContinents } from '../../infrastructure/store/thunks/continent-thunks';
-import type { IContinentQueryRequest } from '../../types/continent';
+import Overview from './components/overview/Overview';
 
 function Continents() {
+  const { filters } = useContinentFilters();
   const dispatch = useAppDispatch();
-  const continents = useAppSelector(getContinentsSelector);
 
   useEffect(() => {
-    dispatch(fetchContinents({} as IContinentQueryRequest));
-  }, [dispatch]);
+    dispatch(fetchContinents(filters));
+  }, [dispatch, filters]);
 
   return (
-    <>
-      <Box sx={{ display: 'flex', flexDirection: 'row', flexGrow: '1' }}>Continents ({continents.length})</Box>
-      <Box sx={{ display: 'flex', flexDirection: 'row', flexGrow: '1' }}>
-        {continents.map(() => (
-          <Box>Row</Box>
-        ))}
+    <Box sx={{ height: '100%', width: '100%', minHeight: 0, minWidth: 0, display: 'flex', gap: 2 }}>
+      <Box sx={{ width: '15%', flexShrink: 0 }}>TO DO</Box>
+      <Box sx={{ minHeight: 0, minWidth: 0, flex: 1 }}>
+        <Overview />
       </Box>
-    </>
+    </Box>
   );
 }
 

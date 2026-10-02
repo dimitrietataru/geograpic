@@ -9,3 +9,9 @@ export const useMenuTranslations = () => {
 
   return [t];
 };
+
+export const useTableTranslations = () => {
+  const [t] = useTranslation('table');
+
+  return [t];
+};
