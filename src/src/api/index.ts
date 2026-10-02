@@ -1,9 +1,9 @@
 import axios, { type AxiosInstance } from 'axios';
-import { getEnvironment, getGeograpiApi } from '../../config';
+import { getEnvironment, getGeograpiApi } from '../config';
 
 let api: AxiosInstance | undefined;
 
-export const initApi = (): AxiosInstance => {
+const initApi = (): AxiosInstance => {
   api = axios.create({ baseURL: getGeograpiApi() });
 
   api.interceptors.response.use(

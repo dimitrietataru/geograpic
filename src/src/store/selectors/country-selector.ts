@@ -1,5 +1,5 @@
 import countryAdapter from '../adapters/country-adapter';
-import type { RootState } from '../store';
+import type { RootState } from '..';
 
 const countryState = (state: RootState) => state.countries;
 const countrySelector = countryAdapter.getSelectors(countryState);

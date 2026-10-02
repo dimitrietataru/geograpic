@@ -1,5 +1,5 @@
 import cityAdapter from '../adapters/city-adapter';
-import type { RootState } from '../store';
+import type { RootState } from '..';
 
 const cityState = (state: RootState) => state.cities;
 const citySelector = cityAdapter.getSelectors(cityState);

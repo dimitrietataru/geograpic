@@ -1,7 +1,7 @@
 import isArray from 'lodash/isArray';
 import toNumber from 'lodash/toNumber';
 import toString from 'lodash/toString';
-import type { IContinent, IContinentQueryResponse } from '../../types/continent';
+import type { IContinent, IContinentQueryResponse } from '../types/continent';
 
 export const mapContinent = (continent?: Partial<IContinent>): IContinent => {
   return {

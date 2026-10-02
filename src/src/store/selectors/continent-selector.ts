@@ -1,5 +1,5 @@
 import continentAdapter from '../adapters/continent-adapter';
-import type { RootState } from '../store';
+import type { RootState } from '..';
 
 const continentState = (state: RootState) => state.continents;
 const continentSelector = continentAdapter.getSelectors(continentState);

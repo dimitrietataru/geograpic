@@ -1,5 +1,5 @@
 import { type GridSortDirection } from '@mui/x-data-grid';
-import { SortDirection } from '../../../types/enums/SortDirection';
+import { SortDirection } from '../../types/enums/SortDirection';
 
 export const toAppSortDirection = (sortDirection: GridSortDirection): SortDirection | undefined => {
   console.log('mui-sort', sortDirection);

@@ -1,7 +1,7 @@
 import isArray from 'lodash/isArray';
 import toNumber from 'lodash/toNumber';
 import toString from 'lodash/toString';
-import type { ICountry } from '../../types/country';
+import type { ICountry } from '../types/country';
 
 export const mapCountry = (country?: Partial<ICountry>): ICountry => {
   return {

@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import { useEffect } from 'react';
 import { useContinentFilters } from '../../hooks/filters/useContinentFilters';
-import { useAppDispatch } from '../../infrastructure/store/store';
-import { fetchContinents } from '../../infrastructure/store/thunks/continent-thunks';
+import { useAppDispatch } from '../../store';
+import { fetchContinents } from '../../store/thunks/continent-thunks';
 import Overview from './components/overview/Overview';
 
 function Continents() {

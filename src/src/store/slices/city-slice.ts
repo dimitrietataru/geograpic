@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { ICity } from '../../../types/city';
+import type { ICity } from '../../types/city';
 import cityAdapter from '../adapters/city-adapter';
 
 const initialState = cityAdapter.getInitialState({
@@ -36,6 +36,6 @@ const citySlice = createSlice({
   },
 });
 
-export const { setLoading, setCities, addCity, updateCity, removeCity, setError } = citySlice.actions;
+export const { setCities, addCity, updateCity, removeCity } = citySlice.actions;
 
 export default citySlice.reducer;

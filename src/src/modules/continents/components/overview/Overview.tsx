@@ -3,16 +3,13 @@ import { DataGrid } from '@mui/x-data-grid';
 import type { GridPaginationModel, GridSortModel } from '@mui/x-data-grid/models';
 import toUpper from 'lodash/toUpper';
 import { useContinentFilters } from '../../../../hooks/filters/useContinentFilters';
-import {
-  toAppSortDirection,
-  toMuiSortDirection,
-} from '../../../../infrastructure/mappers/x-data-grid/grid-sort-direction-mapper';
+import { toAppSortDirection, toMuiSortDirection } from '../../../../mappers/x-data-grid/grid-sort-direction-mapper';
 import {
   getContinentCountSelector,
   getContinentLoadingSelector,
   getContinentsSelector,
-} from '../../../../infrastructure/store/selectors/continent-selector';
-import { useAppSelector } from '../../../../infrastructure/store/store';
+} from '../../../../store/selectors/continent-selector';
+import { useAppSelector } from '../../../../store';
 import { useTableTranslations } from '../../../../translations/useAppTranslations';
 import type { IContinent } from '../../../../types/continent';
 import { columns } from './columns';

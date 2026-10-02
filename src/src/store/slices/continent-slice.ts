@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { IContinent } from '../../../types/continent';
+import type { IContinent } from '../../types/continent';
 import continentAdapter from '../adapters/continent-adapter';
 import { fetchContinents } from '../thunks/continent-thunks';
 
@@ -51,7 +51,6 @@ const continentSlice = createSlice({
   },
 });
 
-export const { setLoading, setContinents, addContinent, updateContinent, removeContinent, setError } =
-  continentSlice.actions;
+export const { setContinents, addContinent, updateContinent, removeContinent } = continentSlice.actions;
 
 export default continentSlice.reducer;

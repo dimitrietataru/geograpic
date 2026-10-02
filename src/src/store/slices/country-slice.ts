@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { ICountry } from '../../../types/country';
+import type { ICountry } from '../../types/country';
 import countryAdapter from '../adapters/country-adapter';
 
 const initialState = countryAdapter.getInitialState({
@@ -36,6 +36,6 @@ const countrySlice = createSlice({
   },
 });
 
-export const { setLoading, setCountries, addCountry, updateCountry, removeCountry, setError } = countrySlice.actions;
+export const { setCountries, addCountry, updateCountry, removeCountry } = countrySlice.actions;
 
 export default countrySlice.reducer;
