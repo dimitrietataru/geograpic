@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
-import startup from './services/startup/index.ts';
+import startup from './startup.ts';
 
 const main = async (): Promise<void> => {
   await startup();

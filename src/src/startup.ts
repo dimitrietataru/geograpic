@@ -1,5 +1,5 @@
-import initTranslations from '../../translations';
-import initConfig from './init-config';
+import initConfig from './config/setup';
+import initTranslations from './translations';
 
 const startup = async (): Promise<void> => {
   await initTranslations();

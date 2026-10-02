@@ -1,5 +1,5 @@
-import { setConfig } from '../../config';
-import type { IAppSettings } from '../../config/types';
+import { setConfig } from '..';
+import type { IAppSettings } from '../types';
 
 const loadConfig = async (): Promise<IAppSettings> => {
   let jsonConfig = null;
@@ -15,8 +15,8 @@ const loadConfig = async (): Promise<IAppSettings> => {
 };
 
 const initConfig = async (): Promise<void> => {
-  const configJson = await loadConfig();
-  setConfig(configJson);
+  const config = await loadConfig();
+  setConfig(config);
 };
 
 export default initConfig;
