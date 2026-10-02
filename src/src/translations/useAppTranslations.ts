@@ -6,12 +6,10 @@ export const useAppTranslations = () => {
 
 export const useMenuTranslations = () => {
   const [t] = useTranslation('menu');
-
   return [t];
 };
 
 export const useTableTranslations = () => {
   const [t] = useTranslation('table');
-
   return [t];
 };

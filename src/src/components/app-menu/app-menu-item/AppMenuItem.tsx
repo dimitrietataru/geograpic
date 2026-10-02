@@ -1,15 +1,8 @@
 import { ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { NavLink } from 'react-router';
+import { type TMenuItemProps } from './types';
 
-export type TMenuItemProps = {
-  to: string;
-  label: string;
-  icon: React.ReactNode;
-  isExpanded: boolean;
-  onClick?: () => void;
-};
-
-export function AppMenuItem(props: TMenuItemProps) {
+function AppMenuItem(props: TMenuItemProps) {
   const { isExpanded: isOpen, to, label, icon, onClick } = props;
 
   return (
@@ -43,3 +36,5 @@ export function AppMenuItem(props: TMenuItemProps) {
     </ListItem>
   );
 }
+
+export default AppMenuItem;

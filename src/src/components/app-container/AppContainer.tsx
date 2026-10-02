@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import AppMenu from '../menu';
+import AppMenu from '../app-menu';
 import type { IAppContainerProps } from './types';
 
 function AppContainer(props: IAppContainerProps) {

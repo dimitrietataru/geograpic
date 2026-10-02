@@ -3,7 +3,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import { Box, IconButton } from '@mui/material';
 import { useAppTheme } from '../../theme/hooks/useAppTheme';
 
-function ThemeSwitcher() {
+function AppThemeSwitcher() {
   const { mode, toggleTheme } = useAppTheme();
 
   return (
@@ -13,4 +13,4 @@ function ThemeSwitcher() {
   );
 }
 
-export default ThemeSwitcher;
+export default AppThemeSwitcher;

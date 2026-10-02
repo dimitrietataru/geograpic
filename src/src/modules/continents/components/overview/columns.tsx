@@ -1,9 +1,6 @@
 import { Box } from '@mui/material';
-import { type GridColDef, type GridValidRowModel } from '@mui/x-data-grid';
-import type { TableTranslationKey } from '../../../../translations/table/en';
 import type { IContinent } from '../../../../types/continent';
-
-export type TranslatedGridColDef<T extends GridValidRowModel> = GridColDef<T> & { headerName: TableTranslationKey };
+import type { TranslatedGridColDef } from '../../../../types/translations/TranslatedGridColDef';
 
 export const columns: TranslatedGridColDef<IContinent>[] = [
   {

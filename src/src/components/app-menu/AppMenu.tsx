@@ -7,8 +7,8 @@ import { Box, Divider, Drawer, IconButton, List } from '@mui/material';
 import { useState } from 'react';
 import { Routes as AppRoutes } from '../../routing/routes';
 import { useMenuTranslations } from '../../translations/useAppTranslations';
-import ThemeSwitcher from '../theme';
-import { AppMenuItem } from './AppMenuItem';
+import AppThemeSwitcher from '../app-theme-switcher';
+import AppMenuItem from './app-menu-item';
 
 function AppMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -91,7 +91,7 @@ function AppMenu() {
               icon={<PublicIcon />}
               isExpanded={isOpen}
               onClick={handleContinentsOnClick}
-            ></AppMenuItem>
+            />
 
             <AppMenuItem
               to={AppRoutes.Countries}
@@ -99,7 +99,7 @@ function AppMenu() {
               icon={<FlagIcon />}
               isExpanded={isOpen}
               onClick={handleCountriesOnClick}
-            ></AppMenuItem>
+            />
 
             <AppMenuItem
               to={AppRoutes.Cities}
@@ -107,12 +107,12 @@ function AppMenu() {
               icon={<LocationCityIcon />}
               isExpanded={isOpen}
               onClick={handleCitiesOnClick}
-            ></AppMenuItem>
+            />
           </List>
         </Box>
         <Box className="menuBottom">
           <Divider variant="middle" />
-          <ThemeSwitcher />
+          <AppThemeSwitcher />
         </Box>
       </Box>
     </Drawer>
