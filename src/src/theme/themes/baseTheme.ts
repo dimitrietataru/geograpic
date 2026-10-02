@@ -1,6 +1,7 @@
 import type { ThemeOptions } from '@mui/material';
 
 export const baseTheme: ThemeOptions = {
+  spacing: 8,
   components: {
     MuiButton: {
       defaultProps: {

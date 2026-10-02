@@ -1,4 +1,4 @@
-import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+import { createTheme, CssBaseline, GlobalStyles, ThemeProvider } from '@mui/material';
 import { useMemo, useState } from 'react';
 import { AppThemeContext } from './AppThemeContext';
 import { baseTheme } from './themes/baseTheme';
@@ -41,6 +41,7 @@ function AppThemeProvider(props: React.PropsWithChildren) {
     <AppThemeContext.Provider value={themeContext}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <GlobalStyles styles={{ html: { height: '100%', body: { height: '100%' }, '#root': { height: '100%' } } }} />
         {children}
       </ThemeProvider>
     </AppThemeContext.Provider>
