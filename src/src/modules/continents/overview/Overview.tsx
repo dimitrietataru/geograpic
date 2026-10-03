@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
 import type { GridPaginationModel, GridSortModel } from '@mui/x-data-grid/models';
 import toUpper from 'lodash/toUpper';
+import AppDataGrid from '../../../components/app-data-grid';
 import { useContinentFilters } from '../../../hooks/filters/useContinentFilters';
 import { toAppSortDirection, toMuiSortDirection } from '../../../mappers/x-data-grid/grid-sort-direction-mapper';
 import { useAppSelector } from '../../../store';
@@ -20,7 +20,7 @@ function Overview() {
 
   const loading = useAppSelector(getContinentLoadingSelector);
   const count = useAppSelector(getContinentCountSelector);
-  const entities = useAppSelector(getContinentsSelector);
+  const continents = useAppSelector(getContinentsSelector);
 
   const onSortChange = (model: GridSortModel) => {
     if (!model.length) {
@@ -48,31 +48,26 @@ function Overview() {
 
   return (
     <Box sx={{ height: '100%', width: '100%', minHeight: 0, minWidth: 0 }}>
-      <DataGrid
-        sx={{ fontSize: 12, paddingLeft: '8px', paddingRight: '8px', height: '100%', width: '100%' }}
+      <AppDataGrid
         getRowId={(data: IContinent) => data?.id}
         columns={tableColumns}
-        rows={entities}
+        rows={continents}
         rowCount={count}
-        checkboxSelection={false}
-        disableRowSelectionOnClick
-        rowHeight={60}
-        columnHeaderHeight={48}
-        sortingMode="server"
-        sortingOrder={['asc', 'desc', null]}
         sortModel={
           filters.sortBy && filters.sortDirection
             ? [{ field: filters.sortBy, sort: toMuiSortDirection(filters.sortDirection) }]
             : []
         }
+        paginationModel={
+          filters.page && filters.size
+            ? { page: (filters.page ?? 1) - 1, pageSize: filters.size ?? 10 }
+            : { page: 0, pageSize: 10 }
+        }
         onSortModelChange={onSortChange}
-        paginationMode="server"
-        paginationModel={{ page: (filters.page ?? 1) - 1, pageSize: filters.size ?? 10 }}
-        slotProps={{ pagination: { showFirstButton: true, showLastButton: true } }}
-        pageSizeOptions={[2, 3, 5, 10]}
         onPaginationModelChange={onPaginationChange}
-        autoPageSize={false}
+        pageSizeOptions={[2, 5, 10]}
         loading={loading}
+        rowHeight={60}
       />
     </Box>
   );
