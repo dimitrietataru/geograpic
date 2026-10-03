@@ -3,10 +3,13 @@ const ro = {
     common: {
       actions: 'Acțiuni',
     },
-    headers: {
+    header: {
       id: 'Id',
       name: 'Nume',
       continent: 'Continent',
+    },
+    footer: {
+      all: 'Toate',
     },
     continents: {
       id: 'Id',

@@ -3,10 +3,13 @@ const en = {
     common: {
       actions: 'Actions',
     },
-    headers: {
+    header: {
       id: 'Id',
       name: 'Name',
       continent: 'Continent',
+    },
+    footer: {
+      all: 'All',
     },
     continents: {
       id: 'Id',

@@ -74,7 +74,7 @@ function Overview() {
         onSortModelChange={onSortChange}
         paginationModel={paginationModel}
         onPaginationModelChange={onPaginationChange}
-        pageSizeOptions={[2, 5, 10, { value: -1, label: 'All' }]}
+        pageSizeOptions={[2, 5, 10, { value: -1, label: t('table.footer.all') }]}
         loading={loading}
         rowHeight={60}
       />

@@ -5,7 +5,7 @@ import type { TranslatedGridColDef } from '../../../types/translations/Translate
 export const columns: TranslatedGridColDef<IContinent>[] = [
   {
     field: 'id',
-    headerName: 'headers.id',
+    headerName: 'header.id',
     sortable: true,
     filterable: false,
     hideable: true,
@@ -16,9 +16,9 @@ export const columns: TranslatedGridColDef<IContinent>[] = [
   },
   {
     field: 'name',
-    headerName: 'headers.name',
+    headerName: 'header.name',
     sortable: true,
-    filterable: false,
+    filterable: true,
     hideable: false,
     flex: 1,
     minWidth: 200,
