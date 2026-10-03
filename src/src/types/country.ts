@@ -9,6 +9,7 @@ export interface ICountry extends IModel {
 
 interface ICountryQueryFilter {
   name?: string;
+  continentIds?: number[];
 }
 
 export type ICountryQueryRequest = IQueryRequest<ICountryQueryFilter>;

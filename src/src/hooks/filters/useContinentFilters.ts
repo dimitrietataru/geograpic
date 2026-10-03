@@ -6,12 +6,15 @@ import { useSearchParams } from 'react-router';
 import type { IContinentQueryRequest } from '../../types/continent';
 import { sortDirectionFromString } from '../../types/enums/SortDirection';
 
+const DEFAULT_PAGE = '1';
+const DEFAULT_SIZE = '10';
+
 export function useContinentFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const filters: IContinentQueryRequest = useMemo((): IContinentQueryRequest => {
-    const page = toNumber(searchParams.get('page') ?? '1');
-    const size = toNumber(searchParams.get('size') ?? '10');
+    const page = toNumber(searchParams.get('page') ?? DEFAULT_PAGE);
+    const size = toNumber(searchParams.get('size') ?? DEFAULT_SIZE);
     const sortBy = toString(searchParams.get('sortBy'));
     const sortDirection = sortDirectionFromString(toString(searchParams.get('sortDirection')));
 
@@ -37,8 +40,8 @@ export function useContinentFilters() {
           const next = new URLSearchParams(prev);
 
           if (reset) {
-            next.set('page', '1');
-            next.set('size', '10');
+            next.set('page', DEFAULT_PAGE);
+            next.set('size', DEFAULT_SIZE);
 
             return next;
           }

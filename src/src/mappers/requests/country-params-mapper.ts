@@ -24,6 +24,12 @@ const mapQueryParams = (request: ICountryQueryRequest): URLSearchParams => {
     params.set('name', toString(request.filter?.name));
   }
 
+  if (request.filter?.continentIds?.length) {
+    request.filter.continentIds.forEach(id => {
+      params.append('continentIds', toString(id));
+    });
+  }
+
   return params;
 };
 

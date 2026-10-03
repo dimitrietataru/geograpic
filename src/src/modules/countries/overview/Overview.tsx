@@ -57,11 +57,11 @@ function Overview() {
       : [];
 
   const paginationModel: GridPaginationModel =
-    filters.page && filters.size
-      ? filters.size !== count
-        ? { page: filters.page - 1, pageSize: filters.size }
-        : { page: 0, pageSize: -1 }
-      : { page: 0, pageSize: 100 };
+    !filters.page || !filters.size
+      ? { page: 0, pageSize: 100 }
+      : filters.size > 100
+        ? { page: 0, pageSize: -1 }
+        : { page: filters.page - 1, pageSize: filters.size };
 
   const tableColumns = getColumns(continentsById).map(column => ({
     ...column,
