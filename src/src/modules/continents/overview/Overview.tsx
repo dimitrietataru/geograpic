@@ -38,8 +38,25 @@ function Overview() {
   };
 
   const onPaginationChange = (model: GridPaginationModel) => {
+    if (model.pageSize === -1) {
+      setFilters({ ...filters, page: 1, size: count });
+      return;
+    }
+
     setFilters({ ...filters, page: model.page + 1, size: model.pageSize });
   };
+
+  const sortModel: GridSortModel =
+    filters.sortBy && filters.sortDirection
+      ? [{ field: filters.sortBy, sort: toMuiSortDirection(filters.sortDirection) }]
+      : [];
+
+  const paginationModel: GridPaginationModel =
+    filters.page && filters.size
+      ? filters.size !== count
+        ? { page: filters.page - 1, pageSize: filters.size }
+        : { page: 0, pageSize: -1 }
+      : { page: 0, pageSize: 100 };
 
   const tableColumns = columns.map(column => ({
     ...column,
@@ -53,19 +70,11 @@ function Overview() {
         columns={tableColumns}
         rows={continents}
         rowCount={count}
-        sortModel={
-          filters.sortBy && filters.sortDirection
-            ? [{ field: filters.sortBy, sort: toMuiSortDirection(filters.sortDirection) }]
-            : []
-        }
-        paginationModel={
-          filters.page && filters.size
-            ? { page: (filters.page ?? 1) - 1, pageSize: filters.size ?? 10 }
-            : { page: 0, pageSize: 10 }
-        }
+        sortModel={sortModel}
         onSortModelChange={onSortChange}
+        paginationModel={paginationModel}
         onPaginationModelChange={onPaginationChange}
-        pageSizeOptions={[2, 5, 10]}
+        pageSizeOptions={[2, 5, 10, { value: -1, label: 'All' }]}
         loading={loading}
         rowHeight={60}
       />
