@@ -4,4 +4,6 @@ export const Routes = {
   Continents: '/continents',
   Countries: '/countries',
   Cities: '/cities',
+
+  MapExplore: '/explore',
 };

@@ -3,6 +3,7 @@ const en = {
     continents: 'Continents',
     countries: 'Countries',
     cities: 'Cities',
+    mapExplore: 'Explore',
   },
 } as const;
 

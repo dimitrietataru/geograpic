@@ -1,4 +1,5 @@
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ExploreIcon from '@mui/icons-material/Explore';
 import FlagIcon from '@mui/icons-material/Flag';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -35,6 +36,10 @@ function AppMenu() {
 
   const handleCitiesOnClick = () => {
     console.log('menu', 'clicked cities');
+  };
+
+  const handleMapExploreOnClick = () => {
+    console.log('menu', 'clicked map explore');
   };
 
   return (
@@ -107,6 +112,16 @@ function AppMenu() {
               icon={<LocationCityIcon />}
               isExpanded={isOpen}
               onClick={handleCitiesOnClick}
+            />
+
+            <Divider variant="middle" />
+
+            <AppMenuItem
+              to={AppRoutes.MapExplore}
+              label={t('menu.mapExplore')}
+              icon={<ExploreIcon />}
+              isExpanded={isOpen}
+              onClick={handleMapExploreOnClick}
             />
           </List>
         </Box>

@@ -3,6 +3,7 @@ const ro = {
     continents: 'Continente',
     countries: 'Țări',
     cities: 'Orașe',
+    mapExplore: 'Explorează',
   },
 } as const;
 

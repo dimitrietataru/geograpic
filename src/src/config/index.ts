@@ -7,3 +7,4 @@ export const setConfig = (config: IAppSettings) => (appSettings = { ...config })
 
 export const getEnvironment = () => appSettings?.ENVIRONMENT;
 export const getGeograpiApi = () => appSettings?.GEOGRAPI_API;
+export const getGoogleMapsApiKey = () => appSettings?.GOOGLE_MAPS_API_KEY;
