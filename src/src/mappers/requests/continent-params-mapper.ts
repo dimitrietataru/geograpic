@@ -20,6 +20,10 @@ const mapQueryParams = (request: IContinentQueryRequest): URLSearchParams => {
     params.set('sortDirection', toString(request.sortDirection));
   }
 
+  if (request.filter?.code) {
+    params.set('code', toString(request.filter?.name));
+  }
+
   if (request.filter?.name) {
     params.set('name', toString(request.filter?.name));
   }

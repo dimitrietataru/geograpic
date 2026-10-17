@@ -4,6 +4,7 @@ import type { IQueryResponse } from './abstractions/queryResponse';
 import type { ICountry } from './country';
 
 export interface IContinent extends IModel {
+  code: string;
   name: string;
 }
 
@@ -12,6 +13,7 @@ export interface IContinentDetails extends IContinent {
 }
 
 interface IContinentQueryFilter {
+  code?: string;
   name?: string;
 }
 

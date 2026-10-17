@@ -6,6 +6,7 @@ import type { IContinent, IContinentQueryResponse } from '../types/continent';
 export const mapContinent = (continent?: Partial<IContinent>): IContinent => {
   return {
     id: toNumber(continent?.id),
+    code: toString(continent?.code),
     name: toString(continent?.name),
   };
 };

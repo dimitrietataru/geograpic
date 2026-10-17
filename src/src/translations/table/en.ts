@@ -5,6 +5,7 @@ const en = {
     },
     header: {
       id: 'Id',
+      code: 'ISO Code',
       name: 'Name',
       continent: 'Continent',
     },

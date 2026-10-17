@@ -15,6 +15,17 @@ export const columns: TranslatedGridColDef<IContinent>[] = [
     renderCell: data => <Box>{data.row.id}</Box>,
   },
   {
+    field: 'code',
+    headerName: 'header.code',
+    sortable: true,
+    filterable: true,
+    hideable: false,
+    flex: 1,
+    minWidth: 120,
+    maxWidth: 200,
+    renderCell: data => <Box>{data.row.code}</Box>,
+  },
+  {
     field: 'name',
     headerName: 'header.name',
     sortable: true,

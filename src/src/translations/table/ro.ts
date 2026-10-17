@@ -5,6 +5,7 @@ const ro = {
     },
     header: {
       id: 'Id',
+      code: 'Cod ISO',
       name: 'Nume',
       continent: 'Continent',
     },

@@ -63,12 +63,12 @@ function ContinentFilter() {
         }}
       />
 
-      <Box sx={{ maxHeight: '400px', overflowY: 'auto', pr: 1 }}>
+      <Box sx={{ maxHeight: '400px', overflowY: 'auto', px: 1 }}>
         <FormGroup>
           {filteredContinents.map(option => (
             <FormControlLabel
               key={option.id}
-              label={option.name}
+              label={`(${option.code}) ${option.name}`}
               control={<Checkbox checked={options.includes(option.id)} onChange={() => handleToggle(option.id)} />}
             />
           ))}
