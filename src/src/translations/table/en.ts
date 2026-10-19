@@ -8,6 +8,10 @@ const en = {
       code: 'ISO Code',
       name: 'Name',
       continent: 'Continent',
+      country: {
+        area: 'Area',
+        population: 'Population',
+      },
     },
     footer: {
       all: 'All',
@@ -19,6 +23,8 @@ const en = {
     countries: {
       id: 'Id',
       name: 'Name',
+      area: 'Area',
+      population: 'Population',
     },
   },
 } as const;

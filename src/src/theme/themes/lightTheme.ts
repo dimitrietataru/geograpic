@@ -18,5 +18,15 @@ export const lightTheme: ThemeOptions = {
       rowEven: grey[50],
       rowOdd: grey[100],
     },
+    data: {
+      population: {
+        B: grey[800],
+        M: grey[700],
+        K: grey[600],
+      },
+      area: {
+        unit: grey[700],
+      },
+    },
   },
 };

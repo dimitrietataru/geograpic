@@ -8,6 +8,10 @@ const ro = {
       code: 'Cod ISO',
       name: 'Nume',
       continent: 'Continent',
+      country: {
+        area: 'Suprafață',
+        population: 'Populație',
+      },
     },
     footer: {
       all: 'Toate',
@@ -19,6 +23,8 @@ const ro = {
     countries: {
       id: 'Id',
       name: 'Nume',
+      area: 'Suprafață',
+      population: 'Populație',
     },
   },
 } as const;

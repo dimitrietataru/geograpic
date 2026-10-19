@@ -4,10 +4,16 @@ import type { IQueryResponse } from './abstractions/queryResponse';
 
 export interface ICountry extends IModel {
   continentId: number;
+  code: string;
+  codeA3: string;
   name: string;
+  nameOfficial: string;
+  area: number;
+  population: number;
 }
 
 interface ICountryQueryFilter {
+  code?: string;
   name?: string;
   continentIds?: number[];
 }

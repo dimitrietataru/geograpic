@@ -7,7 +7,12 @@ export const mapCountry = (country?: Partial<ICountry>): ICountry => {
   return {
     id: toNumber(country?.id),
     continentId: toNumber(country?.continentId),
+    code: toString(country?.code),
+    codeA3: toString(country?.codeA3),
     name: toString(country?.name),
+    nameOfficial: toString(country?.nameOfficial),
+    area: toNumber(country?.area),
+    population: toNumber(country?.population),
   };
 };
 

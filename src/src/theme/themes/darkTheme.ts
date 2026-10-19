@@ -23,5 +23,15 @@ export const darkTheme: ThemeOptions = {
       rowEven: darken(grey[900], 0.2),
       rowOdd: darken(grey[900], 0.4),
     },
+    data: {
+      population: {
+        B: grey[300],
+        M: grey[400],
+        K: grey[500],
+      },
+      area: {
+        unit: grey[400],
+      },
+    },
   },
 };
