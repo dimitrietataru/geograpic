@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
-import AppContainer from '../../components/app-container/AppContainer';
+import AppContainer from '../../components/app-container';
 import Cities from '../../modules/cities';
 import Continents from '../../modules/continents';
 import Countries from '../../modules/countries';

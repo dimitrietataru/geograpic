@@ -15,8 +15,8 @@ function AppMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [t] = useMenuTranslations();
 
-  const widthClosed = 65;
-  const widthOpened = 240;
+  const widthClosed = 56;
+  const widthOpened = 210;
 
   const handleDrawerOpen = () => {
     setIsOpen(true);
