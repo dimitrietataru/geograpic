@@ -37,9 +37,14 @@ export function useExploreFilters() {
           next.set('mapType', updates.mapType);
           if (updates.selectedContinent) {
             next.set('continent', toString(updates.selectedContinent));
+          } else {
+            next.delete('continent');
           }
+
           if (updates.selectedCountry) {
             next.set('country', toString(updates.selectedCountry));
+          } else {
+            next.delete('country');
           }
 
           return next;

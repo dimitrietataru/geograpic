@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { ICountry } from '../../types/country';
 import countryAdapter from '../adapters/country-adapter';
-import { fetchCountries } from '../thunks/country-thunks';
+import { fetchAllCountries, fetchCountries } from '../thunks/country-thunks';
 
 const initialState = countryAdapter.getInitialState({
   loading: false,
@@ -51,6 +51,18 @@ const countrySlice = createSlice({
         countryAdapter.setAll(state, action.payload.items);
       })
       .addCase(fetchCountries.rejected, state => {
+        state.loading = false;
+      })
+      .addCase(fetchAllCountries.pending, state => {
+        state.loading = true;
+      })
+      .addCase(fetchAllCountries.fulfilled, (state, action) => {
+        state.loading = false;
+        state.initialLoaded = true;
+        state.count = action.payload.count;
+        countryAdapter.setAll(state, action.payload.items);
+      })
+      .addCase(fetchAllCountries.rejected, state => {
         state.loading = false;
       });
   },

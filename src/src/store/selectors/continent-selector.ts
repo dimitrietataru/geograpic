@@ -1,5 +1,5 @@
-import continentAdapter from '../adapters/continent-adapter';
 import type { RootState } from '..';
+import continentAdapter from '../adapters/continent-adapter';
 
 const continentState = (state: RootState) => state.continents;
 const continentSelector = continentAdapter.getSelectors(continentState);
@@ -7,6 +7,9 @@ const continentSelector = continentAdapter.getSelectors(continentState);
 export const getContinentsSelector = (state: RootState) => continentSelector.selectAll(state);
 export const getContinentByIdSelector = (id: number) => (state: RootState) => continentSelector.selectById(state, id);
 export const getContinentsTotalSelector = (state: RootState) => continentSelector.selectTotal(state);
+
+export const getContinentByCodeSelector = (code?: string) => (state: RootState) =>
+  code ? continentSelector.selectAll(state).find(continent => continent.code === code) : undefined;
 
 export const getContinentLoadingSelector = (state: RootState) => continentState(state).loading;
 export const getContinentInitialLoadedSelector = (state: RootState) => continentState(state).initialLoaded;

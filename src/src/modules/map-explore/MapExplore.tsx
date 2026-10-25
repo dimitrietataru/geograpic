@@ -1,6 +1,9 @@
 import { Box, Tab, Tabs } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AppTabPanel from '../../components/app-tab-panel';
+import { useAppDispatch } from '../../store';
+import { fetchAllContinents } from '../../store/thunks/continent-thunks';
+import { fetchAllCountries } from '../../store/thunks/country-thunks';
 import MapCountries from './map-countries';
 
 function tabProps(index: number) {
@@ -12,6 +15,12 @@ function tabProps(index: number) {
 
 function MapExplore() {
   const [tab, setTab] = useState<number>(1);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllContinents());
+    dispatch(fetchAllCountries());
+  }, [dispatch]);
 
   const onTabChange = (_event: unknown, tabValue: number) => {
     setTab(tabValue);

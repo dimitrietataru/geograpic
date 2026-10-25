@@ -1,13 +1,14 @@
+import { Box } from '@mui/material';
 import { type MapCameraChangedEvent } from '@vis.gl/react-google-maps';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import AppMap from '../../../components/app-map';
 import { useExploreFilters } from '../../../hooks/filters/useExploreFilters';
+import MapCameraController from '../layers/controllers/map-camera-controller';
 import LayerEurope from '../layers/layer-europe';
 import type { ILayerEuropeClickProps } from '../layers/layer-europe/types';
 import LayerWorld from '../layers/layer-world';
 import type { ILayerWorldClickProps } from '../layers/layer-world/types';
-import { filter } from 'lodash';
-import MapCameraController from '../layers/controllers/map-camera-controller';
+import MapBreadcrumbs from './map-breadcrumbs';
 
 const WORLD_BOUNDS: google.maps.LatLngBoundsLiteral = { north: 85, south: -85, west: -180, east: 180 };
 const WORLD_CENTER: google.maps.LatLngLiteral = { lat: 22.5, lng: 0 };
@@ -221,50 +222,58 @@ function MapCountries() {
   };
 
   return (
-    <AppMap
-      defaultCenter={center}
-      restriction={{ latLngBounds: boundaries, strictBounds: true }}
-      defaultZoom={zoom}
-      minZoom={minZoom}
-      maxZoom={maxZoom}
-      onZoomChanged={onZoomChange}
-      showAdministrativeCountryLabels={showAdministrativeCountryLabels}
-      showAdministrativeProvinceLabels={showAdministrativeProvinceLabels}
-      showAdministrativeLocalityLabels={showAdministrativeLocalityLabels}
-      showAdministrativeNeighborhoodLabels={showAdministrativeNeighborhoodLabels}
-      showAdministrativeLandParcelLabels={showAdministrativeLandParcelLabels}
-      showAdministrativeCountryGeometry={showAdministrativeCountryGeometry}
-      showAdministrativeProvinceGeometry={showAdministrativeProvinceGeometry}
-      showAdministrativeLocalityGeometry={showAdministrativeLocalityGeometry}
-      showAdministrativeNeighborhoodGeometry={showAdministrativeNeighborhoodGeometry}
-      showAdministrativeLandParcelGeometry={showAdministrativeLandParcelGeometry}
-      showRoadArterialLabels={showRoadArterialLabels}
-      showRoadHighwayLabels={showRoadHighwayLabels}
-      showRoadHighwayControlledLabels={showRoadHighwayControlledLabels}
-      showRoadLocalLabels={showRoadLocalLabels}
-      showRoadArterialGeometry={showRoadArterialGeometry}
-      showRoadHighwayGeometry={showRoadHighwayGeometry}
-      showRoadHighwayControlledGeometry={showRoadHighwayControlledGeometry}
-      showRoadLocalGeometry={showRoadLocalGeometry}
+    <Box
+      sx={[
+        { width: '100%', height: '100%', minHeight: 0 },
+        { display: 'flex', flexDirection: 'column', gap: 0.5 },
+      ]}
     >
-      <MapCameraController mapType={filters.mapType} />
-      {filters.mapType === 'World' && (
-        <LayerWorld
-          onClick={(cp: ILayerWorldClickProps) => {
-            setFilters({ mapType: 'Continent', selectedContinent: cp.continentCode });
-            setBoundaries(cp.boundaries);
-            setCenter(cp.center);
-          }}
-        />
-      )}
-      {filters.mapType === 'Continent' && filters.selectedContinent === 'EU' && (
-        <LayerEurope
-          onClick={(cp: ILayerEuropeClickProps) => {
-            setFilters({ mapType: 'Country', selectedContinent: cp.continentCode, selectedCountry: cp.countryCode });
-          }}
-        />
-      )}
-    </AppMap>
+      <MapBreadcrumbs />
+      <AppMap
+        defaultCenter={center}
+        restriction={{ latLngBounds: boundaries, strictBounds: true }}
+        defaultZoom={zoom}
+        minZoom={minZoom}
+        maxZoom={maxZoom}
+        onZoomChanged={onZoomChange}
+        showAdministrativeCountryLabels={showAdministrativeCountryLabels}
+        showAdministrativeProvinceLabels={showAdministrativeProvinceLabels}
+        showAdministrativeLocalityLabels={showAdministrativeLocalityLabels}
+        showAdministrativeNeighborhoodLabels={showAdministrativeNeighborhoodLabels}
+        showAdministrativeLandParcelLabels={showAdministrativeLandParcelLabels}
+        showAdministrativeCountryGeometry={showAdministrativeCountryGeometry}
+        showAdministrativeProvinceGeometry={showAdministrativeProvinceGeometry}
+        showAdministrativeLocalityGeometry={showAdministrativeLocalityGeometry}
+        showAdministrativeNeighborhoodGeometry={showAdministrativeNeighborhoodGeometry}
+        showAdministrativeLandParcelGeometry={showAdministrativeLandParcelGeometry}
+        showRoadArterialLabels={showRoadArterialLabels}
+        showRoadHighwayLabels={showRoadHighwayLabels}
+        showRoadHighwayControlledLabels={showRoadHighwayControlledLabels}
+        showRoadLocalLabels={showRoadLocalLabels}
+        showRoadArterialGeometry={showRoadArterialGeometry}
+        showRoadHighwayGeometry={showRoadHighwayGeometry}
+        showRoadHighwayControlledGeometry={showRoadHighwayControlledGeometry}
+        showRoadLocalGeometry={showRoadLocalGeometry}
+      >
+        <MapCameraController mapType={filters.mapType} />
+        {filters.mapType === 'World' && (
+          <LayerWorld
+            onClick={(cp: ILayerWorldClickProps) => {
+              setFilters({ mapType: 'Continent', selectedContinent: cp.continentCode });
+              setBoundaries(cp.boundaries);
+              setCenter(cp.center);
+            }}
+          />
+        )}
+        {filters.mapType === 'Continent' && filters.selectedContinent === 'EU' && (
+          <LayerEurope
+            onClick={(cp: ILayerEuropeClickProps) => {
+              setFilters({ mapType: 'Country', selectedContinent: cp.continentCode, selectedCountry: cp.countryCode });
+            }}
+          />
+        )}
+      </AppMap>
+    </Box>
   );
 }
 

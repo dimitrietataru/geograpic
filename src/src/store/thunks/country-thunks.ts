@@ -8,3 +8,12 @@ export const fetchCountries = createAsyncThunk(
     return fetchCountriesRequest(request);
   },
 );
+
+export const fetchAllCountries = createAsyncThunk('countries/fetch-all', async (): Promise<ICountryQueryResponse> => {
+  const request = {
+    page: 1,
+    size: 200,
+  } as ICountryQueryRequest;
+
+  return fetchCountriesRequest(request);
+});
