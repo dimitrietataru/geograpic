@@ -1,12 +1,13 @@
-import { useMap } from '@vis.gl/react-google-maps';
-import useEuropeGeoJson from '../../../../hooks/geo/useContinentEuropeGeoJson';
-import type { ILayerEuropeProps } from './types';
-import { useEffect } from 'react';
 import { colors } from '@mui/material';
+import { useMap } from '@vis.gl/react-google-maps';
+import { useEffect } from 'react';
+import { useExploreFilters } from '../../../../hooks/filters/useExploreFilters';
+import useContinentGeoJson from '../../../../hooks/geo/useContinentGeoJson';
 
-function LayerEurope(props: ILayerEuropeProps) {
+function LayerEurope() {
   const map = useMap();
-  const layer = useEuropeGeoJson();
+  const layer = useContinentGeoJson('EU');
+  const { setFilters } = useExploreFilters();
 
   useEffect(() => {
     if (!map || !layer) {
@@ -26,22 +27,17 @@ function LayerEurope(props: ILayerEuropeProps) {
     });
 
     const onClick = map.data.addListener('click', (event: google.maps.Data.MouseEvent) => {
-      const continentCode = event.feature.getProperty('continent') ?? 'Unknown ISO Code';
-      const countryCode = event.feature.getProperty('codeiso2') ?? 'Unknown ISO Code';
+      const continentCode = String(event.feature.getProperty('continent') ?? 'Unknown ISO Code');
+      const countryCode = String(event.feature.getProperty('codeiso2') ?? 'Unknown ISO Code');
 
-      const clickProps = {
-        continentCode: String(continentCode),
-        countryCode: String(countryCode),
-      };
-
-      props.onClick(clickProps);
+      setFilters({ mapType: 'Country', selectedContinent: continentCode, selectedCountry: countryCode });
     });
 
     return () => {
       features.forEach(f => map.data.remove(f));
       onClick.remove();
     };
-  }, [map, layer, props]);
+  }, [map, layer, setFilters]);
 
   return null;
 }

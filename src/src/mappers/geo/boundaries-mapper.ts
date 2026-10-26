@@ -1,7 +1,7 @@
-export const WORLD_BOUNDS: google.maps.LatLngBoundsLiteral = { north: 85, south: -85, west: -180, east: 180 };
-export const EU_BOUNDS: google.maps.LatLngBoundsLiteral = { north: 85, south: 25, west: -180, east: 180 };
+import { EU_BOUNDS, WORLD_BOUNDS } from '../../constants/geo/map-bounds';
+import type { TMapBounds } from '../../types/geo/TMapBounds';
 
-export const toBoundary = (continentCode: string): google.maps.LatLngBoundsLiteral => {
+export const toBoundary = (continentCode: string): TMapBounds => {
   console.log('Continent', continentCode);
   if (continentCode === 'EU') {
     return EU_BOUNDS;

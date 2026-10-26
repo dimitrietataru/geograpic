@@ -1,7 +1,9 @@
-import type { MapType } from '../../../../../types/explore';
+import type { TMapType } from '../../../../../types/explore';
+import type { TMapBounds } from '../../../../../types/geo/TMapBounds';
+import type { TMapPoint } from '../../../../../types/geo/TMapPoint';
 
 export interface IMapCameraControllerProps {
-  mapType: MapType;
-  boundaries?: google.maps.LatLngBoundsLiteral;
-  center?: google.maps.LatLngLiteral;
+  mapType: TMapType;
+  boundaries?: TMapBounds;
+  center?: TMapPoint;
 }

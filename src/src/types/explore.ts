@@ -1,7 +1,7 @@
-export type MapType = 'World' | 'Continent' | 'Country';
+export type TMapType = 'World' | 'Continent' | 'Country';
 
 export interface IExploreQuery {
-  mapType: MapType;
+  mapType: TMapType;
 
   selectedContinent?: string;
   selectedCountry?: string;

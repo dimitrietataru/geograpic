@@ -1,20 +1,24 @@
-import { Box, Tab, Tabs } from '@mui/material';
+import { Box } from '@mui/material';
+import { type MapCameraChangedEvent } from '@vis.gl/react-google-maps';
 import { useEffect, useState } from 'react';
-import AppTabPanel from '../../components/app-tab-panel';
+import AppMap from '../../components/app-map';
+import { WORLD_BOUNDS } from '../../constants/geo/map-bounds';
+import { WORLD_CENTER } from '../../constants/geo/map-centers';
+import { useExploreFilters } from '../../hooks/filters/useExploreFilters';
 import { useAppDispatch } from '../../store';
 import { fetchAllContinents } from '../../store/thunks/continent-thunks';
 import { fetchAllCountries } from '../../store/thunks/country-thunks';
-import MapCountries from './map-countries';
+import MapCameraController from './layers/controllers/map-camera-controller';
+import LayerEurope from './layers/layer-europe';
+import LayerWorld from './layers/layer-world';
+import MapBreadcrumbs from './map-breadcrumbs';
 
-function tabProps(index: number) {
-  return {
-    id: `app-tab-${index}`,
-    'aria-controls': `app-tab-panel-${index}`,
-  };
-}
+const ZOOM = 3;
+const MIN_ZOOM = 3;
+const MAX_ZOOM = 10;
 
 function MapExplore() {
-  const [tab, setTab] = useState<number>(1);
+  const { filters } = useExploreFilters();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -22,26 +26,94 @@ function MapExplore() {
     dispatch(fetchAllCountries());
   }, [dispatch]);
 
-  const onTabChange = (_event: unknown, tabValue: number) => {
-    setTab(tabValue);
+  const [zoom, setZoom] = useState<number>(ZOOM);
+
+  const [showAdministrativeCountryLabels, setShowAdministrativeCountryLabels] = useState<boolean>(true);
+  const [showAdministrativeProvinceLabels, setShowAdministrativeProvinceLabels] = useState<boolean>(false);
+  const [showAdministrativeLocalityLabels, setShowAdministrativeLocalityLabels] = useState<boolean>(false);
+  const [showAdministrativeNeighborhoodLabels, setShowAdministrativeNeighborhoodLabels] = useState<boolean>(false);
+  const [showAdministrativeLandParcelLabels, setShowAdministrativeLandParcelLabels] = useState<boolean>(false);
+
+  const [showAdministrativeCountryGeometry, setShowAdministrativeCountryGeometry] = useState<boolean>(true);
+  const [showAdministrativeProvinceGeometry, setShowAdministrativeProvinceGeometry] = useState<boolean>(false);
+  const [showAdministrativeLocalityGeometry, setShowAdministrativeLocalityGeometry] = useState<boolean>(false);
+  const [showAdministrativeNeighborhoodGeometry, setShowAdministrativeNeighborhoodGeometry] = useState<boolean>(false);
+  const [showAdministrativeLandParcelGeometry, setShowAdministrativeLandParcelGeometry] = useState<boolean>(false);
+
+  const [showRoadArterialLabels, setShowRoadArterialLabels] = useState<boolean>(false);
+  const [showRoadHighwayLabels, setShowRoadHighwayLabels] = useState<boolean>(false);
+  const [showRoadHighwayControlledLabels, setShowRoadHighwayControlledLabels] = useState<boolean>(false);
+  const [showRoadLocalLabels, setShowRoadLocalLabels] = useState<boolean>(false);
+
+  const [showRoadArterialGeometry, setShowRoadArterialGeometry] = useState<boolean>(false);
+  const [showRoadHighwayGeometry, setShowRoadHighwayGeometry] = useState<boolean>(false);
+  const [showRoadHighwayControlledGeometry, setShowRoadHighwayControlledGeometry] = useState<boolean>(false);
+  const [showRoadLocalGeometry, setShowRoadLocalGeometry] = useState<boolean>(false);
+
+  const onZoomChange = (event: MapCameraChangedEvent): void => {
+    setZoom(event.detail.zoom);
+
+    setShowAdministrativeCountryLabels(event.detail.zoom >= 3);
+    setShowAdministrativeProvinceLabels(event.detail.zoom >= 5);
+    setShowAdministrativeLocalityLabels(event.detail.zoom >= 6);
+    setShowAdministrativeNeighborhoodLabels(event.detail.zoom >= 7);
+    setShowAdministrativeLandParcelLabels(event.detail.zoom >= 8);
+
+    setShowAdministrativeCountryGeometry(event.detail.zoom >= 3);
+    setShowAdministrativeProvinceGeometry(event.detail.zoom >= 5);
+    setShowAdministrativeLocalityGeometry(event.detail.zoom >= 6);
+    setShowAdministrativeNeighborhoodGeometry(event.detail.zoom >= 7);
+    setShowAdministrativeLandParcelGeometry(event.detail.zoom >= 8);
+
+    setShowRoadArterialLabels(event.detail.zoom >= 7);
+    setShowRoadHighwayLabels(event.detail.zoom >= 8);
+    setShowRoadHighwayControlledLabels(event.detail.zoom >= 8);
+    setShowRoadLocalLabels(event.detail.zoom >= 9);
+
+    setShowRoadArterialGeometry(event.detail.zoom >= 7);
+    setShowRoadHighwayGeometry(event.detail.zoom >= 8);
+    setShowRoadHighwayControlledGeometry(event.detail.zoom >= 8);
+    setShowRoadLocalGeometry(event.detail.zoom >= 9);
   };
 
   return (
-    <Box sx={{ height: '100%', width: '100%', minHeight: 0, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-      <Box sx={{ width: '100%' }}>
-        <Tabs value={tab} onChange={onTabChange} aria-label="map-explore">
-          <Tab label="Continents" {...tabProps(0)} />
-          <Tab label="Countries" {...tabProps(1)} />
-        </Tabs>
-      </Box>
-      <AppTabPanel value={tab} index={0}>
-        Continents
-      </AppTabPanel>
-      <AppTabPanel value={tab} index={1} sx={{ flex: 1, minHeight: 0, minWidth: 0 }}>
-        <Box sx={[{ width: '100%', height: '100%', minHeight: 0 }]}>
-          <MapCountries />
-        </Box>
-      </AppTabPanel>
+    <Box
+      sx={[
+        { height: '100%', width: '100%', minHeight: 0, minWidth: 0 },
+        { display: 'flex', flexDirection: 'column', gap: 0.5 },
+      ]}
+    >
+      <MapBreadcrumbs />
+      <AppMap
+        defaultCenter={WORLD_CENTER}
+        restriction={{ latLngBounds: WORLD_BOUNDS, strictBounds: true }}
+        defaultZoom={zoom}
+        minZoom={MIN_ZOOM}
+        maxZoom={MAX_ZOOM}
+        onZoomChanged={onZoomChange}
+        showAdministrativeCountryLabels={showAdministrativeCountryLabels}
+        showAdministrativeProvinceLabels={showAdministrativeProvinceLabels}
+        showAdministrativeLocalityLabels={showAdministrativeLocalityLabels}
+        showAdministrativeNeighborhoodLabels={showAdministrativeNeighborhoodLabels}
+        showAdministrativeLandParcelLabels={showAdministrativeLandParcelLabels}
+        showAdministrativeCountryGeometry={showAdministrativeCountryGeometry}
+        showAdministrativeProvinceGeometry={showAdministrativeProvinceGeometry}
+        showAdministrativeLocalityGeometry={showAdministrativeLocalityGeometry}
+        showAdministrativeNeighborhoodGeometry={showAdministrativeNeighborhoodGeometry}
+        showAdministrativeLandParcelGeometry={showAdministrativeLandParcelGeometry}
+        showRoadArterialLabels={showRoadArterialLabels}
+        showRoadHighwayLabels={showRoadHighwayLabels}
+        showRoadHighwayControlledLabels={showRoadHighwayControlledLabels}
+        showRoadLocalLabels={showRoadLocalLabels}
+        showRoadArterialGeometry={showRoadArterialGeometry}
+        showRoadHighwayGeometry={showRoadHighwayGeometry}
+        showRoadHighwayControlledGeometry={showRoadHighwayControlledGeometry}
+        showRoadLocalGeometry={showRoadLocalGeometry}
+      >
+        <MapCameraController mapType={filters.mapType} />
+        {filters.mapType === 'World' && <LayerWorld />}
+        {filters.mapType === 'Continent' && filters.selectedContinent === 'EU' && <LayerEurope />}
+      </AppMap>
     </Box>
   );
 }

@@ -2,10 +2,10 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import FlagIcon from '@mui/icons-material/Flag';
 import PublicIcon from '@mui/icons-material/Public';
 import { Box, Breadcrumbs, Link, Typography } from '@mui/material';
-import { useExploreFilters } from '../../../../hooks/filters/useExploreFilters';
-import { useAppSelector } from '../../../../store';
-import { getContinentByCodeSelector } from '../../../../store/selectors/continent-selector';
-import { getCountryByCodeSelector } from '../../../../store/selectors/country-selector';
+import { useExploreFilters } from '../../../hooks/filters/useExploreFilters';
+import { useAppSelector } from '../../../store';
+import { getContinentByCodeSelector } from '../../../store/selectors/continent-selector';
+import { getCountryByCodeSelector } from '../../../store/selectors/country-selector';
 
 function MapBreadcrumbs() {
   const { filters, setFilters } = useExploreFilters();

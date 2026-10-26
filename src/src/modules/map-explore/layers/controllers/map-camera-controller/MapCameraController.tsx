@@ -1,22 +1,13 @@
 import { useMap } from '@vis.gl/react-google-maps';
 import { useEffect } from 'react';
-import { WORLD_BOUNDS } from '../../../../../mappers/geo/boundaries-mapper';
-import { WORLD_CENTER } from '../../../../../mappers/geo/center-mapper';
+import { WORLD_BOUNDS } from '../../../../../constants/geo/map-bounds';
+import { WORLD_CENTER } from '../../../../../constants/geo/map-centers';
 import type { IMapCameraControllerProps } from './types';
 
 function MapCameraController(props: IMapCameraControllerProps) {
   const map = useMap();
 
   useEffect(() => {
-    console.log('ENTERED CONTROLLER', props.mapType);
-
-    console.log('Controller effect', {
-      mapType: props.mapType,
-      hasMap: !!map,
-      zoom: map?.getZoom(),
-      center: map?.getCenter()?.toJSON(),
-    });
-
     if (!map || props.mapType !== 'World') {
       return;
     }

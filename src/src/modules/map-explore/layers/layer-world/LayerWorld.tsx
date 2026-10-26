@@ -1,14 +1,15 @@
 import { colors } from '@mui/material';
 import { useMap } from '@vis.gl/react-google-maps';
 import { useEffect } from 'react';
+import { useExploreFilters } from '../../../../hooks/filters/useExploreFilters';
 import useWorldGeoJson from '../../../../hooks/geo/useWorldGeoJson';
 import { toBoundary } from '../../../../mappers/geo/boundaries-mapper';
-import type { ILayerWorldProps } from './types';
 import { toCenter } from '../../../../mappers/geo/center-mapper';
 
-function LayerWorld(props: ILayerWorldProps) {
+function LayerWorld() {
   const map = useMap();
   const layer = useWorldGeoJson();
+  const { setFilters } = useExploreFilters();
 
   useEffect(() => {
     if (!map || !layer) {
@@ -30,19 +31,24 @@ function LayerWorld(props: ILayerWorldProps) {
     const onClick = map.data.addListener('click', (event: google.maps.Data.MouseEvent) => {
       // const code = event.feature.getProperty('continent') ?? 'EU';
       const continentCode = 'EU';
+      const continentBoundary = toBoundary(continentCode);
+      const continentCenter = toCenter(continentCode);
 
-      props.onClick({
-        continentCode: String(continentCode),
-        boundaries: toBoundary(continentCode),
-        center: toCenter(continentCode),
+      map.setOptions({
+        minZoom: 3,
+        maxZoom: 10,
+        restriction: { latLngBounds: continentBoundary, strictBounds: true },
       });
+
+      map.moveCamera({ center: continentCenter });
+      setFilters({ mapType: 'Continent', selectedContinent: continentCode });
     });
 
     return () => {
       features.forEach(f => map.data.remove(f));
       onClick.remove();
     };
-  }, [map, layer, props]);
+  }, [map, layer, setFilters]);
 
   return null;
 }

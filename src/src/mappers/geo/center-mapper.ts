@@ -1,7 +1,7 @@
-export const WORLD_CENTER: google.maps.LatLngLiteral = { lat: 22.5, lng: 0 };
-export const EUROPE_CENTER: google.maps.LatLngLiteral = { lat: 55, lng: 17.5 };
+import { EUROPE_CENTER, WORLD_CENTER } from '../../constants/geo/map-centers';
+import type { TMapPoint } from '../../types/geo/TMapPoint';
 
-export const toCenter = (continentCode: string): google.maps.LatLngLiteral => {
+export const toCenter = (continentCode: string): TMapPoint => {
   if (continentCode === 'EU') {
     return EUROPE_CENTER;
   }
