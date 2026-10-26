@@ -4,6 +4,11 @@ export const useAppTranslations = () => {
   return useTranslation();
 };
 
+export const useMapTranslations = () => {
+  const [t] = useTranslation('map');
+  return [t];
+};
+
 export const useMenuTranslations = () => {
   const [t] = useTranslation('menu');
   return [t];

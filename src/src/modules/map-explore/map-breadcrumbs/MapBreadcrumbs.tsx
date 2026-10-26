@@ -6,8 +6,10 @@ import { useExploreFilters } from '../../../hooks/filters/useExploreFilters';
 import { useAppSelector } from '../../../store';
 import { getContinentByCodeSelector } from '../../../store/selectors/continent-selector';
 import { getCountryByCodeSelector } from '../../../store/selectors/country-selector';
+import { useMapTranslations } from '../../../translations/useAppTranslations';
 
 function MapBreadcrumbs() {
+  const [t] = useMapTranslations();
   const { filters, setFilters } = useExploreFilters();
   const continent = useAppSelector(getContinentByCodeSelector(filters.selectedContinent));
   const country = useAppSelector(getCountryByCodeSelector(filters.selectedCountry));
@@ -56,7 +58,7 @@ function MapBreadcrumbs() {
         <Box sx={{ display: 'flex', flexDirection: 'row', gap: 0.5 }}>
           <ExploreIcon />
           <Typography color="text.primary" aria-current="page">
-            Global
+            {t('map.navigation.global')}
           </Typography>
         </Box>
       )}
@@ -65,7 +67,7 @@ function MapBreadcrumbs() {
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 0.5 }}>
             <ExploreIcon />
             <Typography color="text.primary" aria-current="page">
-              Global
+              {t('map.navigation.global')}
             </Typography>
           </Box>
         </Link>
@@ -75,7 +77,7 @@ function MapBreadcrumbs() {
         <Box sx={{ display: 'flex', flexDirection: 'row', gap: 0.5 }}>
           <PublicIcon />
           <Typography color="text.primary" aria-current="page">
-            {continent?.name}
+            {continent?.name ?? t('map.navigation.continent')}
           </Typography>
         </Box>
       )}
@@ -85,7 +87,7 @@ function MapBreadcrumbs() {
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 0.5 }}>
             <PublicIcon />
             <Typography color="text.primary" aria-current="page">
-              {continent?.name}
+              {continent?.name ?? t('map.navigation.continent')}
             </Typography>
           </Box>
         </Link>
@@ -95,7 +97,7 @@ function MapBreadcrumbs() {
         <Box sx={{ display: 'flex', flexDirection: 'row', gap: 0.5 }}>
           <FlagIcon />
           <Typography color="text.primary" aria-current="page">
-            {country?.name ?? 'Country'}
+            {country?.name ?? t('map.navigation.country')}
           </Typography>
         </Box>
       )}

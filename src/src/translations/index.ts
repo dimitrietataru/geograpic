@@ -6,7 +6,7 @@ const options = {
   lng: 'en',
   fallbackLng: 'ro',
   returnNull: false,
-  ns: ['geograpi', 'common', 'menu'],
+  ns: ['geograpi', 'common', 'map', 'menu', 'table'],
   defaultNS: 'common',
   fallbackNS: ['geograpi', 'common'],
   resources: resources,
