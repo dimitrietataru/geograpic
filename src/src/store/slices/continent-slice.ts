@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { IContinent } from '../../types/continent';
+import type { Continent } from '../../types/continent';
 import continentAdapter from '../adapters/continent-adapter';
 import { fetchAllContinents, fetchContinents } from '../thunks/continent-thunks';
 
@@ -26,13 +26,13 @@ const continentSlice = createSlice({
     setCount(state, action: PayloadAction<number>) {
       state.count = action.payload;
     },
-    setContinents(state, action: PayloadAction<IContinent[]>) {
+    setContinents(state, action: PayloadAction<Continent[]>) {
       continentAdapter.setAll(state, action.payload);
     },
-    addContinent(state, action: PayloadAction<IContinent>) {
+    addContinent(state, action: PayloadAction<Continent>) {
       continentAdapter.addOne(state, action.payload);
     },
-    updateContinent(state, action: PayloadAction<IContinent>) {
+    updateContinent(state, action: PayloadAction<Continent>) {
       continentAdapter.upsertOne(state, action.payload);
     },
     removeContinent(state, action: PayloadAction<number>) {

@@ -1,4 +1,4 @@
-export interface IStyledGeoJsonProperties {
+export interface StyledGeoJsonProperties {
   fill?: string;
   fillOpacity?: number;
 

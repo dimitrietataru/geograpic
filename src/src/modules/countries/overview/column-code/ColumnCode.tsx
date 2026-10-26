@@ -1,7 +1,7 @@
 import { Box, Divider, Tooltip, Typography } from '@mui/material';
-import type { IColumnCodeProps } from './types';
+import type { ColumnCodeProps } from './types';
 
-function ColumnCode(props: IColumnCodeProps) {
+function ColumnCode(props: ColumnCodeProps) {
   return (
     <Tooltip placement="left" arrow describeChild title={`${props.codeA2} | ${props.codeA3}`}>
       <Box sx={{ height: '100%', display: 'flex', alignItems: 'center' }}>

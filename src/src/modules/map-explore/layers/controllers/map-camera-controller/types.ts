@@ -1,9 +1,9 @@
-import type { TMapType } from '../../../../../types/explore';
-import type { TMapBounds } from '../../../../../types/geo/TMapBounds';
-import type { TMapPoint } from '../../../../../types/geo/TMapPoint';
+import type { MapBounds } from '../../../../../types/geo/MapBounds';
+import type { MapPoint } from '../../../../../types/geo/MapPoint';
+import type { MapType } from '../../../../../types/geo/MapType';
 
-export interface IMapCameraControllerProps {
-  mapType: TMapType;
-  boundaries?: TMapBounds;
-  center?: TMapPoint;
+export interface MapCameraControllerProps {
+  mapType: MapType;
+  boundaries?: MapBounds;
+  center?: MapPoint;
 }

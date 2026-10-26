@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { ICountry } from '../../types/country';
+import type { Country } from '../../types/country';
 import countryAdapter from '../adapters/country-adapter';
 import { fetchAllCountries, fetchCountries } from '../thunks/country-thunks';
 
@@ -26,13 +26,13 @@ const countrySlice = createSlice({
     setCount(state, action: PayloadAction<number>) {
       state.count = action.payload;
     },
-    setCountries(state, action: PayloadAction<ICountry[]>) {
+    setCountries(state, action: PayloadAction<Country[]>) {
       countryAdapter.setAll(state, action.payload);
     },
-    addCountry(state, action: PayloadAction<ICountry>) {
+    addCountry(state, action: PayloadAction<Country>) {
       countryAdapter.addOne(state, action.payload);
     },
-    updateCountry(state, action: PayloadAction<ICountry>) {
+    updateCountry(state, action: PayloadAction<Country>) {
       countryAdapter.upsertOne(state, action.payload);
     },
     removeCountry(state, action: PayloadAction<number>) {

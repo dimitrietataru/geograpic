@@ -1,5 +1,5 @@
 import { Box, Tooltip, Typography } from '@mui/material';
-import type { IColumnPopulationProps } from './types';
+import type { ColumnPopulationProps } from './types';
 
 const getDisplayValues = (value: number): { value: string; suffix: 'B' | 'M' | 'K' | undefined } => {
   if (value >= 1_000_000_000) {
@@ -17,7 +17,7 @@ const getDisplayValues = (value: number): { value: string; suffix: 'B' | 'M' | '
   return { value: `${value}`, suffix: undefined };
 };
 
-function ColumnPopulation(props: IColumnPopulationProps) {
+function ColumnPopulation(props: ColumnPopulationProps) {
   const displayValues = getDisplayValues(props.population);
   const localeValue = props.population.toLocaleString('fr-FR');
 

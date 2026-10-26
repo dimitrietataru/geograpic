@@ -1,6 +1,6 @@
 import { createEntityAdapter } from '@reduxjs/toolkit';
-import type { ICountry } from '../../types/country';
+import type { Country } from '../../types/country';
 
-const countryAdapter = createEntityAdapter<ICountry, number>({ selectId: e => e.id });
+const countryAdapter = createEntityAdapter<Country, number>({ selectId: e => e.id });
 
 export default countryAdapter;

@@ -2,9 +2,9 @@ import { useMap } from '@vis.gl/react-google-maps';
 import { useEffect } from 'react';
 import { WORLD_BOUNDS } from '../../../../../constants/geo/map-bounds';
 import { WORLD_CENTER } from '../../../../../constants/geo/map-centers';
-import type { IMapCameraControllerProps } from './types';
+import type { MapCameraControllerProps } from './types';
 
-function MapCameraController(props: IMapCameraControllerProps) {
+function MapCameraController(props: MapCameraControllerProps) {
   const map = useMap();
 
   useEffect(() => {

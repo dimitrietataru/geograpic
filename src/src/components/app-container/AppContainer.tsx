@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import AppMenu from '../app-menu';
-import type { IAppContainerProps } from './types';
+import type { AppContainerProps } from './types';
 
-function AppContainer(props: IAppContainerProps) {
+function AppContainer(props: AppContainerProps) {
   const { children } = props;
 
   return (

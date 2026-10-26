@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
-import type { IContinent } from '../../../types/continent';
+import type { Continent } from '../../../types/continent';
 import type { TranslatedGridColDef } from '../../../types/translations/TranslatedGridColDef';
 
-export const columns: TranslatedGridColDef<IContinent>[] = [
+export const columns: TranslatedGridColDef<Continent>[] = [
   {
     field: 'id',
     headerName: 'header.id',

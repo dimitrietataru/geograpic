@@ -11,7 +11,7 @@ import {
   getContinentsSelector,
 } from '../../../store/selectors/continent-selector';
 import { useTableTranslations } from '../../../translations/useAppTranslations';
-import type { IContinent } from '../../../types/continent';
+import type { Continent } from '../../../types/continent';
 import { columns } from './columns';
 
 function Overview() {
@@ -66,7 +66,7 @@ function Overview() {
   return (
     <Box sx={{ height: '100%', width: '100%', minHeight: 0, minWidth: 0 }}>
       <AppDataGrid
-        getRowId={(data: IContinent) => data?.id}
+        getRowId={(data: Continent) => data?.id}
         columns={tableColumns}
         rows={continents}
         rowCount={count}

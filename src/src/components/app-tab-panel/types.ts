@@ -1,6 +1,6 @@
 import type { SxProps, Theme } from '@mui/material/styles';
 
-export interface IAppTabPanelProps {
+export interface AppTabPanelProps {
   index: number;
   value: number;
 

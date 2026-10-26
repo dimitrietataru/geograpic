@@ -13,7 +13,7 @@ import {
   getCountryLoadingSelector,
 } from '../../../store/selectors/country-selector';
 import { useTableTranslations } from '../../../translations/useAppTranslations';
-import type { ICountry } from '../../../types/country';
+import type { Country } from '../../../types/country';
 import { getColumns } from './columns';
 
 function Overview() {
@@ -71,7 +71,7 @@ function Overview() {
   return (
     <Box sx={{ height: '100%', width: '100%', minHeight: 0, minWidth: 0 }}>
       <AppDataGrid
-        getRowId={(data: ICountry) => data?.id}
+        getRowId={(data: Country) => data?.id}
         columns={tableColumns}
         rows={countries}
         rowCount={count}

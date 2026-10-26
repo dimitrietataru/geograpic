@@ -1,9 +1,9 @@
-import type { IAppSettings } from './types';
+import type { AppSettings } from './types';
 
-let appSettings: IAppSettings | null = null;
+let appSettings: AppSettings | null = null;
 
-export const getConfig = (key: keyof IAppSettings) => appSettings?.[key];
-export const setConfig = (config: IAppSettings) => (appSettings = { ...config });
+export const getConfig = (key: keyof AppSettings) => appSettings?.[key];
+export const setConfig = (config: AppSettings) => (appSettings = { ...config });
 
 export const getEnvironment = () => appSettings?.ENVIRONMENT;
 export const getGeograpiApi = () => appSettings?.GEOGRAPI_API;

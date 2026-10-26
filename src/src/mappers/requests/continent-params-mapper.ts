@@ -1,7 +1,7 @@
 import toString from 'lodash/toString';
-import type { IContinentQueryRequest } from '../../types/continent';
+import type { ContinentQueryRequest } from '../../types/continent';
 
-const mapQueryParams = (request: IContinentQueryRequest): URLSearchParams => {
+const mapQueryParams = (request: ContinentQueryRequest): URLSearchParams => {
   const params = new URLSearchParams();
 
   if (request.page) {

@@ -1,5 +1,5 @@
-import type { IModel } from './abstractions/model';
+import type { ModelBase } from './abstractions/model';
 
-export interface ICity extends IModel {
+export interface City extends ModelBase {
   name: string;
 }

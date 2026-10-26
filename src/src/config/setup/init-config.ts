@@ -1,7 +1,7 @@
 import { setConfig } from '..';
-import type { IAppSettings } from '../types';
+import type { AppSettings } from '../types';
 
-const loadConfig = async (): Promise<IAppSettings> => {
+const loadConfig = async (): Promise<AppSettings> => {
   let jsonConfig = null;
 
   try {

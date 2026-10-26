@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import { toContinentPath } from '../../mappers/geo/geo-json-mapper';
-import type { TStyledGeoJson } from '../../types/geo/TStyledGeoJson';
-
-const FILE_PATH = '/map/europe.geojson';
+import type { StyledGeoJson } from '../../types/geo/StyledGeoJson';
 
 export default function useContinentGeoJson(code: string) {
-  const [data, setData] = useState<TStyledGeoJson | null>(null);
+  const [data, setData] = useState<StyledGeoJson | null>(null);
   const filePath = toContinentPath(code);
 
   useEffect(() => {
@@ -19,13 +17,13 @@ export default function useContinentGeoJson(code: string) {
 
         return response.json();
       })
-      .then((json: TStyledGeoJson) => {
+      .then((json: StyledGeoJson) => {
         if (!cancelled) {
           setData(json);
         }
       })
       .catch((error: unknown) => {
-        console.log(`Failed to load GeoJSON from ${FILE_PATH}.`, error);
+        console.log(`Failed to load GeoJSON from ${filePath}.`, error);
       });
 
     return () => {

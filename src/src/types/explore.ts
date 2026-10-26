@@ -1,7 +1,7 @@
-export type TMapType = 'World' | 'Continent' | 'Country';
+import type { MapType } from './geo/MapType';
 
-export interface IExploreQuery {
-  mapType: TMapType;
+export interface ExploreQuery {
+  mapType: MapType;
 
   selectedContinent?: string;
   selectedCountry?: string;

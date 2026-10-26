@@ -3,7 +3,7 @@ import toNumber from 'lodash/toNumber';
 import toString from 'lodash/toString';
 import { useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import type { ICountryQueryRequest } from '../../types/country';
+import type { CountryQueryRequest } from '../../types/country';
 import { sortDirectionFromString } from '../../types/enums/SortDirection';
 
 const DEFAULT_PAGE = '1';
@@ -12,7 +12,7 @@ const DEFAULT_SIZE = '100';
 export function useCountryFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const filters: ICountryQueryRequest = useMemo((): ICountryQueryRequest => {
+  const filters: CountryQueryRequest = useMemo((): CountryQueryRequest => {
     const page = toNumber(searchParams.get('page') ?? DEFAULT_PAGE);
     const size = toNumber(searchParams.get('size') ?? DEFAULT_SIZE);
     const sortBy = toString(searchParams.get('sortBy'));
@@ -41,7 +41,7 @@ export function useCountryFilters() {
   }, [filters]);
 
   const setFilters = useCallback(
-    (updates: ICountryQueryRequest, { replace = false, reset = false } = {}) => {
+    (updates: CountryQueryRequest, { replace = false, reset = false } = {}) => {
       setSearchParams(
         prev => {
           const next = new URLSearchParams(prev);

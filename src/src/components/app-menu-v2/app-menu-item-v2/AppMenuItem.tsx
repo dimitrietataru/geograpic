@@ -1,8 +1,8 @@
 import { Box, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { NavLink } from 'react-router';
-import { type TMenuItemProps } from './types';
+import { type MenuItemProps } from './types';
 
-function AppMenuItem(props: TMenuItemProps) {
+function AppMenuItem(props: MenuItemProps) {
   const { to, label, icon, onClick } = props;
 
   return (

@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
-import type { IAppTabPanelProps } from './types';
+import type { AppTabPanelProps } from './types';
 
-function AppTabPanel(props: IAppTabPanelProps) {
+function AppTabPanel(props: AppTabPanelProps) {
   const { children, value, index, sx, ...other } = props;
 
   return (

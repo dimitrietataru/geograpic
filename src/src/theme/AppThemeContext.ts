@@ -1,4 +1,4 @@
 import { createContext } from 'react';
-import type { IAppThemeContext } from './types';
+import type { AppThemeContextProps } from './types';
 
-export const AppThemeContext = createContext<IAppThemeContext | undefined>(undefined);
+export const AppThemeContext = createContext<AppThemeContextProps | undefined>(undefined);

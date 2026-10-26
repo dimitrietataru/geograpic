@@ -1,8 +1,8 @@
-import type { IModel } from './abstractions/model';
-import type { IQueryRequest } from './abstractions/queryRequest';
-import type { IQueryResponse } from './abstractions/queryResponse';
+import type { ModelBase } from './abstractions/model';
+import type { QueryRequest } from './abstractions/query-request';
+import type { QueryResponse } from './abstractions/query-response';
 
-export interface ICountry extends IModel {
+export interface Country extends ModelBase {
   continentId: number;
   code: string;
   codeA3: string;
@@ -12,11 +12,11 @@ export interface ICountry extends IModel {
   population: number;
 }
 
-interface ICountryQueryFilter {
+interface CountryQueryFilter {
   code?: string;
   name?: string;
   continentIds?: number[];
 }
 
-export type ICountryQueryRequest = IQueryRequest<ICountryQueryFilter>;
-export type ICountryQueryResponse = IQueryResponse<ICountry>;
+export type CountryQueryRequest = QueryRequest<CountryQueryFilter>;
+export type CountryQueryResponse = QueryResponse<Country>;

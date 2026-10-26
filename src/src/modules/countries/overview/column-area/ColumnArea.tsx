@@ -1,7 +1,7 @@
 import { Box, Tooltip, Typography } from '@mui/material';
-import type { IColumnAreaProps } from './types';
+import type { ColumnAreaProps } from './types';
 
-function ColumnArea(props: IColumnAreaProps) {
+function ColumnArea(props: ColumnAreaProps) {
   const localeValue = props.area.toLocaleString('fr-FR');
 
   return (

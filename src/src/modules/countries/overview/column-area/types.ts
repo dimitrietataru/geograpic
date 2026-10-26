@@ -1,3 +1,3 @@
-export interface IColumnAreaProps {
+export interface ColumnAreaProps {
   area: number;
 }

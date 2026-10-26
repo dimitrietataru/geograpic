@@ -1,11 +1,11 @@
 import { Box, Typography } from '@mui/material';
-import type { ICountry } from '../../../types/country';
+import type { Country } from '../../../types/country';
 import type { TranslatedGridColDef } from '../../../types/translations/TranslatedGridColDef';
 import ColumnArea from './column-area';
 import ColumnCode from './column-code';
 import ColumnPopulation from './column-population';
 
-export const getColumns = (continentsById: Map<number, string>): TranslatedGridColDef<ICountry>[] => [
+export const getColumns = (continentsById: Map<number, string>): TranslatedGridColDef<Country>[] => [
   {
     field: 'id',
     headerName: 'header.id',

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import type { TStyledGeoJson } from '../../types/geo/TStyledGeoJson';
+import type { StyledGeoJson } from '../../types/geo/StyledGeoJson';
 
 const FILE_PATH = '/map/europe.geojson';
 
 export default function useEuropeGeoJson() {
-  const [data, setData] = useState<TStyledGeoJson | null>(null);
+  const [data, setData] = useState<StyledGeoJson | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -17,7 +17,7 @@ export default function useEuropeGeoJson() {
 
         return response.json();
       })
-      .then((json: TStyledGeoJson) => {
+      .then((json: StyledGeoJson) => {
         if (!cancelled) {
           setData(json);
         }

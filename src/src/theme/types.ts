@@ -1,6 +1,6 @@
 export type ThemeMode = 'light' | 'dark';
 
-export interface IAppThemeContext {
+export interface AppThemeContextProps {
   mode: ThemeMode;
   toggleTheme: () => void;
 }

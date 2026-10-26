@@ -1,12 +1,12 @@
 import { SortDirection } from '../enums/SortDirection';
 
-export interface IQueryRequestBase {
+export interface QueryRequestBase {
   page?: number;
   size?: number;
   sortBy?: string;
   sortDirection?: SortDirection;
 }
 
-export interface IQueryRequest<TFilter> extends IQueryRequestBase {
+export interface QueryRequest<TFilter> extends QueryRequestBase {
   filter: TFilter;
 }

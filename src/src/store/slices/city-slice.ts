@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { ICity } from '../../types/city';
+import type { City } from '../../types/city';
 import cityAdapter from '../adapters/city-adapter';
 
 const initialState = cityAdapter.getInitialState({
@@ -21,13 +21,13 @@ const citySlice = createSlice({
     setCount(state, action: PayloadAction<number>) {
       state.count = action.payload;
     },
-    setCities(state, action: PayloadAction<ICity[]>) {
+    setCities(state, action: PayloadAction<City[]>) {
       cityAdapter.setAll(state, action.payload);
     },
-    addCity(state, action: PayloadAction<ICity>) {
+    addCity(state, action: PayloadAction<City>) {
       cityAdapter.addOne(state, action.payload);
     },
-    updateCity(state, action: PayloadAction<ICity>) {
+    updateCity(state, action: PayloadAction<City>) {
       cityAdapter.upsertOne(state, action.payload);
     },
     removeCity(state, action: PayloadAction<number>) {

@@ -1,7 +1,7 @@
 import { EU_BOUNDS, WORLD_BOUNDS } from '../../constants/geo/map-bounds';
-import type { TMapBounds } from '../../types/geo/TMapBounds';
+import type { MapBounds } from '../../types/geo/MapBounds';
 
-export const toBoundary = (continentCode: string): TMapBounds => {
+export const toBoundary = (continentCode: string): MapBounds => {
   console.log('Continent', continentCode);
   if (continentCode === 'EU') {
     return EU_BOUNDS;

@@ -3,7 +3,7 @@ import toNumber from 'lodash/toNumber';
 import toString from 'lodash/toString';
 import { useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import type { IContinentQueryRequest } from '../../types/continent';
+import type { ContinentQueryRequest } from '../../types/continent';
 import { sortDirectionFromString } from '../../types/enums/SortDirection';
 
 const DEFAULT_PAGE = '1';
@@ -12,7 +12,7 @@ const DEFAULT_SIZE = '10';
 export function useContinentFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const filters: IContinentQueryRequest = useMemo((): IContinentQueryRequest => {
+  const filters: ContinentQueryRequest = useMemo((): ContinentQueryRequest => {
     const page = toNumber(searchParams.get('page') ?? DEFAULT_PAGE);
     const size = toNumber(searchParams.get('size') ?? DEFAULT_SIZE);
     const sortBy = toString(searchParams.get('sortBy'));
@@ -34,7 +34,7 @@ export function useContinentFilters() {
   }, [filters]);
 
   const setFilters = useCallback(
-    (updates: IContinentQueryRequest, { replace = false, reset = false } = {}) => {
+    (updates: ContinentQueryRequest, { replace = false, reset = false } = {}) => {
       setSearchParams(
         prev => {
           const next = new URLSearchParams(prev);
