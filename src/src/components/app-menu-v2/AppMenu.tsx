@@ -3,12 +3,11 @@ import FlagIcon from '@mui/icons-material/Flag';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import PublicIcon from '@mui/icons-material/Public';
 import { Box, Divider, Drawer, List } from '@mui/material';
+import { APP_MENU_WIDTH } from '../../constants/app-menu';
 import { Routes as AppRoutes } from '../../routing/routes';
 import { useMenuTranslations } from '../../translations/useAppTranslations';
 import AppThemeSwitcher from '../app-theme-switcher';
 import AppMenuItem from './app-menu-item-v2';
-
-const WIDTH = 56;
 
 function AppMenu() {
   const [t] = useMenuTranslations();
@@ -18,12 +17,12 @@ function AppMenu() {
       variant="permanent"
       anchor="left"
       sx={theme => ({
-        width: `${WIDTH}px`,
+        width: `${APP_MENU_WIDTH}px`,
         flexShrink: 0,
 
         '& .MuiDrawer-paper': {
           height: 'fit-content',
-          width: `${WIDTH}px`,
+          width: `${APP_MENU_WIDTH}px`,
           overflowX: 'hidden',
           top: '50%',
           transform: 'translateY(-50%)',

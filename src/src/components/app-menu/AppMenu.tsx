@@ -6,6 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import PublicIcon from '@mui/icons-material/Public';
 import { Box, Divider, Drawer, IconButton, List } from '@mui/material';
 import { useState } from 'react';
+import { APP_MENU_WIDTH, APP_MENU_WIDTH_OPEN } from '../../constants/app-menu';
 import { Routes as AppRoutes } from '../../routing/routes';
 import { useMenuTranslations } from '../../translations/useAppTranslations';
 import AppThemeSwitcher from '../app-theme-switcher';
@@ -14,9 +15,6 @@ import AppMenuItem from './app-menu-item';
 function AppMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [t] = useMenuTranslations();
-
-  const widthClosed = 56;
-  const widthOpened = 210;
 
   const handleDrawerOpen = () => {
     setIsOpen(true);
@@ -47,11 +45,11 @@ function AppMenu() {
       variant="permanent"
       anchor="left"
       sx={theme => ({
-        width: isOpen ? widthOpened : widthClosed,
+        width: `${isOpen ? APP_MENU_WIDTH_OPEN : APP_MENU_WIDTH}px`,
         flexShrink: 0,
 
         '& .MuiDrawer-paper': {
-          width: isOpen ? widthOpened : widthClosed,
+          width: `${isOpen ? APP_MENU_WIDTH_OPEN : APP_MENU_WIDTH}px`,
           overflowX: 'hidden',
 
           transition: theme.transitions.create('width', {
