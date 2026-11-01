@@ -1,11 +1,8 @@
-import { EU_BOUNDS, WORLD_BOUNDS } from '../../constants/geo/map-bounds';
+import { CONTINENT_BOUNDS, WORLD_BOUNDS } from '../../constants/geo/map-bounds';
 import type { MapBounds } from '../../types/geo/MapBounds';
 
 export const toBoundary = (continentCode: string): MapBounds => {
-  console.log('Continent', continentCode);
-  if (continentCode === 'EU') {
-    return EU_BOUNDS;
-  }
+  const boundary = CONTINENT_BOUNDS[continentCode];
 
-  return WORLD_BOUNDS;
+  return boundary ?? WORLD_BOUNDS;
 };

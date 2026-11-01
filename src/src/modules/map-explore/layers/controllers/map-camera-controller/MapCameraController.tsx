@@ -2,24 +2,38 @@ import { useMap } from '@vis.gl/react-google-maps';
 import { useEffect } from 'react';
 import { WORLD_BOUNDS } from '../../../../../constants/geo/map-bounds';
 import { WORLD_CENTER } from '../../../../../constants/geo/map-centers';
-import type { MapCameraControllerProps } from './types';
+import { useExploreFilters } from '../../../../../hooks/filters/useExploreFilters';
+import { toBoundary } from '../../../../../mappers/geo/boundaries-mapper';
+import { toCenter } from '../../../../../mappers/geo/center-mapper';
 
-function MapCameraController(props: MapCameraControllerProps) {
+function MapCameraController() {
   const map = useMap();
+  const { filters } = useExploreFilters();
 
   useEffect(() => {
-    if (!map || props.mapType !== 'World') {
+    if (!map) {
       return;
     }
 
-    map.setOptions({
-      minZoom: 3,
-      maxZoom: 10,
-      restriction: { latLngBounds: WORLD_BOUNDS, strictBounds: true },
-    });
+    if (filters.mapType === 'World') {
+      map.setOptions({
+        minZoom: 3,
+        maxZoom: 10,
+        restriction: { latLngBounds: WORLD_BOUNDS, strictBounds: true },
+      });
 
-    map.moveCamera({ center: WORLD_CENTER, zoom: 3 });
-  }, [map, props.mapType]);
+      map.panTo(WORLD_CENTER);
+      map.setZoom(3);
+    }
+
+    if (filters.mapType === 'Continent' && filters.selectedContinent) {
+      const boundary = toBoundary(filters.selectedContinent);
+      const center = toCenter(filters.selectedContinent);
+
+      map.panTo(center);
+      map.fitBounds(boundary, 32);
+    }
+  }, [map, filters.mapType, filters.selectedContinent]);
 
   return null;
 }

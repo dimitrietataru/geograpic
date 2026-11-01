@@ -1,6 +1,7 @@
 import { Box } from '@mui/material';
 import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import { getGoogleMapsApiKey } from '../../config';
+import { useAppTheme } from '../../theme/hooks/useAppTheme';
 import {
   showAdministrativeCountryGeometry,
   showAdministrativeGeometry,
@@ -30,6 +31,8 @@ import type { AppMapProps } from './types';
 
 function AppMap(props: AppMapProps) {
   const apiKey = getGoogleMapsApiKey();
+  const { mode } = useAppTheme();
+
   const styles = [
     props.showAdministrativeLabels === undefined
       ? undefined
@@ -101,6 +104,7 @@ function AppMap(props: AppMapProps) {
         <APIProvider apiKey={apiKey!}>
           <Map
             style={{ width: '100%', height: '100%', flex: 1 }}
+            colorScheme={mode === 'dark' ? 'DARK' : 'LIGHT'}
             gestureHandling="greedy"
             disableDefaultUI
             styles={[...styles, ...(props.styles ?? [])]}

@@ -15,7 +15,7 @@ import MapBreadcrumbs from './map-breadcrumbs';
 
 const ZOOM = 3;
 const MIN_ZOOM = 3;
-const MAX_ZOOM = 10;
+const MAX_ZOOM = 12;
 
 function MapExplore() {
   const { filters } = useExploreFilters();
@@ -28,13 +28,13 @@ function MapExplore() {
 
   const [zoom, setZoom] = useState<number>(ZOOM);
 
-  const [showAdministrativeCountryLabels, setShowAdministrativeCountryLabels] = useState<boolean>(true);
+  const [showAdministrativeCountryLabels, setShowAdministrativeCountryLabels] = useState<boolean>(false);
   const [showAdministrativeProvinceLabels, setShowAdministrativeProvinceLabels] = useState<boolean>(false);
   const [showAdministrativeLocalityLabels, setShowAdministrativeLocalityLabels] = useState<boolean>(false);
   const [showAdministrativeNeighborhoodLabels, setShowAdministrativeNeighborhoodLabels] = useState<boolean>(false);
   const [showAdministrativeLandParcelLabels, setShowAdministrativeLandParcelLabels] = useState<boolean>(false);
 
-  const [showAdministrativeCountryGeometry, setShowAdministrativeCountryGeometry] = useState<boolean>(true);
+  const [showAdministrativeCountryGeometry, setShowAdministrativeCountryGeometry] = useState<boolean>(false);
   const [showAdministrativeProvinceGeometry, setShowAdministrativeProvinceGeometry] = useState<boolean>(false);
   const [showAdministrativeLocalityGeometry, setShowAdministrativeLocalityGeometry] = useState<boolean>(false);
   const [showAdministrativeNeighborhoodGeometry, setShowAdministrativeNeighborhoodGeometry] = useState<boolean>(false);
@@ -53,13 +53,13 @@ function MapExplore() {
   const onZoomChange = (event: MapCameraChangedEvent): void => {
     setZoom(event.detail.zoom);
 
-    setShowAdministrativeCountryLabels(event.detail.zoom >= 3);
+    setShowAdministrativeCountryLabels(event.detail.zoom > 3);
     setShowAdministrativeProvinceLabels(event.detail.zoom >= 5);
     setShowAdministrativeLocalityLabels(event.detail.zoom >= 6);
     setShowAdministrativeNeighborhoodLabels(event.detail.zoom >= 7);
     setShowAdministrativeLandParcelLabels(event.detail.zoom >= 8);
 
-    setShowAdministrativeCountryGeometry(event.detail.zoom >= 3);
+    setShowAdministrativeCountryGeometry(event.detail.zoom > 3);
     setShowAdministrativeProvinceGeometry(event.detail.zoom >= 5);
     setShowAdministrativeLocalityGeometry(event.detail.zoom >= 6);
     setShowAdministrativeNeighborhoodGeometry(event.detail.zoom >= 7);
@@ -110,7 +110,7 @@ function MapExplore() {
         showRoadHighwayControlledGeometry={showRoadHighwayControlledGeometry}
         showRoadLocalGeometry={showRoadLocalGeometry}
       >
-        <MapCameraController mapType={filters.mapType} />
+        <MapCameraController />
         {filters.mapType === 'World' && <LayerWorld />}
         {filters.mapType === 'Continent' && filters.selectedContinent === 'EU' && <LayerEurope />}
       </AppMap>

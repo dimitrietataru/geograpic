@@ -16,6 +16,34 @@ declare module '@mui/material/styles' {
         unit: string;
       };
     };
+    map: {
+      continent: {
+        af: {
+          fillColor: string;
+          strokeColor: string;
+        };
+        as: {
+          fillColor: string;
+          strokeColor: string;
+        };
+        eu: {
+          fillColor: string;
+          strokeColor: string;
+        };
+        oc: {
+          fillColor: string;
+          strokeColor: string;
+        };
+        na: {
+          fillColor: string;
+          strokeColor: string;
+        };
+        sa: {
+          fillColor: string;
+          strokeColor: string;
+        };
+      };
+    };
   }
 
   interface PaletteOptions {
@@ -31,6 +59,34 @@ declare module '@mui/material/styles' {
       };
       area: {
         unit: string;
+      };
+    };
+    map: {
+      continent: {
+        af: {
+          fillColor: string;
+          strokeColor: string;
+        };
+        as: {
+          fillColor: string;
+          strokeColor: string;
+        };
+        eu: {
+          fillColor: string;
+          strokeColor: string;
+        };
+        oc: {
+          fillColor: string;
+          strokeColor: string;
+        };
+        na: {
+          fillColor: string;
+          strokeColor: string;
+        };
+        sa: {
+          fillColor: string;
+          strokeColor: string;
+        };
       };
     };
   }

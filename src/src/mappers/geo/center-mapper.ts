@@ -1,10 +1,8 @@
-import { EUROPE_CENTER, WORLD_CENTER } from '../../constants/geo/map-centers';
+import { CONTINENT_CENTERS, WORLD_CENTER } from '../../constants/geo/map-centers';
 import type { MapPoint } from '../../types/geo/MapPoint';
 
 export const toCenter = (continentCode: string): MapPoint => {
-  if (continentCode === 'EU') {
-    return EUROPE_CENTER;
-  }
+  const center = CONTINENT_CENTERS[continentCode];
 
-  return WORLD_CENTER;
+  return center ?? WORLD_CENTER;
 };

@@ -25,6 +25,7 @@ function AppThemeProvider(props: React.PropsWithChildren) {
   const themeContext = useMemo(
     () => ({
       mode: mode,
+      theme,
       toggleTheme: () => {
         setMode(current => {
           const next = current === 'dark' ? 'light' : 'dark';
@@ -34,7 +35,7 @@ function AppThemeProvider(props: React.PropsWithChildren) {
         });
       },
     }),
-    [mode],
+    [mode, theme],
   );
 
   return (
