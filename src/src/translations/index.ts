@@ -19,7 +19,7 @@ const initTranslations = async (): Promise<void> => {
     i18next.use(initReactI18next);
     await i18next.init(options);
   } catch {
-    // swallow exception
+    // swallow
   }
 };
 

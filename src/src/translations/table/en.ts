@@ -7,10 +7,13 @@ const en = {
       id: 'Id',
       code: 'ISO Code',
       name: 'Name',
-      continent: 'Continent',
-      country: {
+      googleId: 'Google ID',
+      coordinates: 'Coordinates',
+      continents: {},
+      countries: {
         area: 'Area',
         population: 'Population',
+        continent: 'Continent',
       },
     },
     footer: {

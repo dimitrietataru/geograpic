@@ -4,6 +4,7 @@ import type { TranslatedGridColDef } from '../../../types/translations/Translate
 import ColumnArea from './column-area';
 import ColumnCode from './column-code';
 import ColumnPopulation from './column-population';
+import ColumnCoordinates from './column-coordinates';
 
 export const getColumns = (continentsById: Map<number, string>): TranslatedGridColDef<Country>[] => [
   {
@@ -38,7 +39,7 @@ export const getColumns = (continentsById: Map<number, string>): TranslatedGridC
   },
   {
     field: 'area',
-    headerName: 'header.country.area',
+    headerName: 'header.countries.area',
     sortable: true,
     filterable: false,
     hideable: true,
@@ -48,7 +49,7 @@ export const getColumns = (continentsById: Map<number, string>): TranslatedGridC
   },
   {
     field: 'population',
-    headerName: 'header.country.population',
+    headerName: 'header.countries.population',
     sortable: true,
     filterable: false,
     hideable: true,
@@ -58,7 +59,7 @@ export const getColumns = (continentsById: Map<number, string>): TranslatedGridC
   },
   {
     field: 'continentId',
-    headerName: 'header.continent',
+    headerName: 'header.countries.continent',
     sortable: true,
     filterable: false,
     hideable: false,

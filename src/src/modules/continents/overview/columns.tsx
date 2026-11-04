@@ -1,6 +1,8 @@
 import { Box } from '@mui/material';
 import type { Continent } from '../../../types/continent';
 import type { TranslatedGridColDef } from '../../../types/translations/TranslatedGridColDef';
+import ColumnCoordinates from './column-coordinates';
+import ColumnGoogleId from './column-google-id';
 
 export const columns: TranslatedGridColDef<Continent>[] = [
   {
@@ -34,6 +36,27 @@ export const columns: TranslatedGridColDef<Continent>[] = [
     flex: 1,
     minWidth: 200,
     renderCell: data => <Box>{data.row.name}</Box>,
+  },
+  {
+    field: 'googleId',
+    headerName: 'header.googleId',
+    sortable: true,
+    filterable: false,
+    hideable: true,
+    flex: 1,
+    minWidth: 200,
+    renderCell: data => <ColumnGoogleId googleId={data.row.googleId} />,
+  },
+  {
+    field: 'coordinates',
+    headerName: 'header.coordinates',
+    sortable: false,
+    filterable: false,
+    hideable: true,
+    flex: 1,
+    minWidth: 180,
+    maxWidth: 200,
+    renderCell: data => <ColumnCoordinates lat={data.row.centerLat} lng={data.row.centerLng} />,
   },
   {
     field: 'actions',

@@ -6,6 +6,13 @@ import type { Country } from './country';
 export interface Continent extends ModelBase {
   code: string;
   name: string;
+  googleId: string;
+  boundaryN: number;
+  boundaryS: number;
+  boundaryE: number;
+  boundaryW: number;
+  centerLat: number;
+  centerLng: number;
 }
 
 export interface ContinentDetails extends Continent {

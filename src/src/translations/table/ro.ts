@@ -7,10 +7,12 @@ const ro = {
       id: 'Id',
       code: 'Cod ISO',
       name: 'Nume',
-      continent: 'Continent',
-      country: {
+      googleId: 'Google ID',
+      coordinates: 'Coordonate',
+      countries: {
         area: 'Suprafață',
         population: 'Populație',
+        continent: 'Continent',
       },
     },
     footer: {

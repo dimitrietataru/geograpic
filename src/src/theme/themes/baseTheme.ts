@@ -1,6 +1,18 @@
 import type { ThemeOptions } from '@mui/material';
 
 declare module '@mui/material/styles' {
+  interface Theme {
+    animations: {
+      opacity: string;
+    };
+  }
+
+  interface ThemeOptions {
+    animations?: {
+      opacity?: string;
+    };
+  }
+
   interface Palette {
     dataGrid: {
       rowEven: string;
@@ -173,5 +185,8 @@ export const baseTheme: ThemeOptions = {
         }),
       },
     },
+  },
+  animations: {
+    opacity: 'opacity 150ms ease-in-out',
   },
 };

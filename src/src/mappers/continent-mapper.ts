@@ -8,6 +8,13 @@ export const mapContinent = (continent?: Partial<Continent>): Continent => {
     id: toNumber(continent?.id),
     code: toString(continent?.code),
     name: toString(continent?.name),
+    googleId: toString(continent?.googleId),
+    boundaryN: toNumber(continent?.boundaryN),
+    boundaryS: toNumber(continent?.boundaryS),
+    boundaryE: toNumber(continent?.boundaryE),
+    boundaryW: toNumber(continent?.boundaryW),
+    centerLat: toNumber(continent?.centerLat),
+    centerLng: toNumber(continent?.centerLng),
   };
 };
 
