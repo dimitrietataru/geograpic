@@ -10,6 +10,7 @@ import {
   showAdministrativeNeighborhoodGeometry,
   showAdministrativeProvinceGeometry,
   showRoadArterialGeometry,
+  showRoadGeometry,
   showRoadHighwayControlledGeometry,
   showRoadHighwayGeometry,
   showRoadLocalGeometry,
@@ -83,7 +84,7 @@ function AppMap(props: AppMapProps) {
     props.showRoadLocalLabels === undefined || props.showRoadLabels !== undefined
       ? undefined
       : showRoadLocalLabels(props.showRoadLocalLabels!),
-    props.showRoadGeometry === undefined ? undefined : showRoadLabels(props.showRoadGeometry!),
+    props.showRoadGeometry === undefined ? undefined : showRoadGeometry(props.showRoadGeometry!),
     props.showRoadArterialGeometry === undefined || props.showRoadGeometry !== undefined
       ? undefined
       : showRoadArterialGeometry(props.showRoadArterialGeometry!),
