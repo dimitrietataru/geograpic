@@ -4,7 +4,7 @@ import Cities from '../../modules/cities';
 import Continents from '../../modules/continents';
 import Countries from '../../modules/countries';
 import Dashboard from '../../modules/dashboard';
-import MapExplore from '../../modules/map-explore';
+import MapExplore from '../../modules/map-explore-v2';
 import { Routes as AppRoutes } from '../routes';
 
 function AppRouter() {
