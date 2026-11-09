@@ -10,7 +10,7 @@ const initApi = (): AxiosInstance => {
     response => response,
     error => {
       const env = getEnvironment();
-      if (env === 'Development') {
+      if (env === 'Development' || !axios.isCancel(error)) {
         console.log(error);
       }
 

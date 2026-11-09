@@ -50,7 +50,11 @@ const continentSlice = createSlice({
         state.count = action.payload.count;
         continentAdapter.setAll(state, action.payload.items);
       })
-      .addCase(fetchContinents.rejected, state => {
+      .addCase(fetchContinents.rejected, (state, action) => {
+        if (action.meta.aborted) {
+          return;
+        }
+
         state.loading = false;
       })
       .addCase(fetchAllContinents.pending, state => {

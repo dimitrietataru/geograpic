@@ -50,7 +50,11 @@ const countrySlice = createSlice({
         state.count = action.payload.count;
         countryAdapter.setAll(state, action.payload.items);
       })
-      .addCase(fetchCountries.rejected, state => {
+      .addCase(fetchCountries.rejected, (state, action) => {
+        if (action.meta.aborted) {
+          return;
+        }
+
         state.loading = false;
       })
       .addCase(fetchAllCountries.pending, state => {

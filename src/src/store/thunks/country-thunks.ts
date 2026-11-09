@@ -4,8 +4,8 @@ import type { CountryQueryRequest, CountryQueryResponse } from '../../types/coun
 
 export const fetchCountries = createAsyncThunk(
   'countries/fetch',
-  async (request: CountryQueryRequest): Promise<CountryQueryResponse> => {
-    return fetchCountriesRequest(request);
+  async (request: CountryQueryRequest, { signal }): Promise<CountryQueryResponse> => {
+    return fetchCountriesRequest(request, signal);
   },
 );
 

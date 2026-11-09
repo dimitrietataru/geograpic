@@ -4,8 +4,8 @@ import type { ContinentQueryRequest, ContinentQueryResponse } from '../../types/
 
 export const fetchContinents = createAsyncThunk(
   'continents/fetch',
-  async (request: ContinentQueryRequest): Promise<ContinentQueryResponse> => {
-    return fetchContinentsRequest(request);
+  async (request: ContinentQueryRequest, { signal }): Promise<ContinentQueryResponse> => {
+    return fetchContinentsRequest(request, signal);
   },
 );
 
