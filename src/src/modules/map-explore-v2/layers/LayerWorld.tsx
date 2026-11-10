@@ -1,10 +1,8 @@
-import { Pin, useMap } from '@vis.gl/react-google-maps';
+import { Chip, Tooltip } from '@mui/material';
+import { blue, red } from '@mui/material/colors';
+import { AdvancedMarker, useMap } from '@vis.gl/react-google-maps';
 import { useEffect, useState } from 'react';
 import { useExploreFilters } from '../../../hooks/filters/useExploreFilters';
-import { useAppTheme } from '../../../theme/hooks/useAppTheme';
-import { blue, red } from '@mui/material/colors';
-import { AdvancedMarker, useMapsLibrary } from '@vis.gl/react-google-maps';
-import { Box, Chip, Tooltip } from '@mui/material';
 
 const countryPoints: Record<string, google.maps.LatLngLiteral> = {
   ChIJw3aJlSb_sUARlLEEqJJP74Q: { lat: 46.0, lng: 25.0 },
@@ -13,11 +11,7 @@ const countryPoints: Record<string, google.maps.LatLngLiteral> = {
 
 function LayerWorld() {
   const map = useMap();
-  const mapMarker = useMapsLibrary('marker');
-
   const { setFilters } = useExploreFilters();
-  const { theme } = useAppTheme();
-
   const [isHovered, setIsHovered] = useState<string | null>(null);
 
   useEffect(() => {

@@ -4,7 +4,6 @@ import type { TranslatedGridColDef } from '../../../types/translations/Translate
 import ColumnArea from './column-area';
 import ColumnCode from './column-code';
 import ColumnPopulation from './column-population';
-import ColumnCoordinates from './column-coordinates';
 
 export const getColumns = (continentsById: Map<number, string>): TranslatedGridColDef<Country>[] => [
   {
