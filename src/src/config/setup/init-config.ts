@@ -5,7 +5,7 @@ const loadConfig = async (): Promise<AppSettings> => {
   let jsonConfig: AppSettings | null = null;
 
   try {
-    const response = await fetch('/appsettings.json');
+    const response = await fetch('/appsettings.json', { cache: 'no-cache' });
     jsonConfig = (await response.json()) as AppSettings;
   } catch {
     // swallow

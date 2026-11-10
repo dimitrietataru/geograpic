@@ -9,7 +9,7 @@ export default function useEuropeGeoJson() {
   useEffect(() => {
     let cancelled = false;
 
-    fetch(FILE_PATH)
+    fetch(FILE_PATH, { cache: 'no-cache' })
       .then(response => {
         if (!response.ok) {
           throw new Error(`Failed to load GeoJSON: ${response.status}.`);

@@ -9,7 +9,7 @@ export default function useContinentGeoJson(code: string) {
   useEffect(() => {
     let cancelled = false;
 
-    fetch(filePath)
+    fetch(filePath, { cache: 'no-cache' })
       .then(response => {
         if (!response.ok) {
           throw new Error(`Failed to load GeoJSON: ${response.status}.`);
