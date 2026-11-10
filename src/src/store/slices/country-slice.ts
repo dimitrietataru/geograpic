@@ -59,6 +59,7 @@ const countrySlice = createSlice({
         }
 
         state.loading = false;
+        state.error = 'Failed to load countries.';
       })
       .addCase(fetchAllCountries.pending, state => {
         state.loading = true;
@@ -75,10 +76,11 @@ const countrySlice = createSlice({
       .addCase(fetchAllCountries.rejected, state => {
         state.loading = false;
         state.allLoading = false;
+        state.error = 'Failed to load countries.';
       });
   },
 });
 
-export const { setCountries, addCountry, updateCountry, removeCountry } = countrySlice.actions;
+export const { setError, setCountries, addCountry, updateCountry, removeCountry } = countrySlice.actions;
 
 export default countrySlice.reducer;

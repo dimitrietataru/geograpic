@@ -59,6 +59,7 @@ const continentSlice = createSlice({
         }
 
         state.loading = false;
+        state.error = 'Failed to load continents.';
       })
       .addCase(fetchAllContinents.pending, state => {
         state.loading = true;
@@ -75,10 +76,11 @@ const continentSlice = createSlice({
       .addCase(fetchAllContinents.rejected, state => {
         state.loading = false;
         state.allLoading = false;
+        state.error = 'Failed to load continents.';
       });
   },
 });
 
-export const { setContinents, addContinent, updateContinent, removeContinent } = continentSlice.actions;
+export const { setError, setContinents, addContinent, updateContinent, removeContinent } = continentSlice.actions;
 
 export default continentSlice.reducer;

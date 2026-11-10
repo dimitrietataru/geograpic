@@ -1,4 +1,5 @@
 import { Provider } from 'react-redux';
+import AppToastError from './components/app-toast-error';
 import AppRouter from './routing/routers/AppRouter';
 import store from './store';
 import AppThemeProvider from './theme';
@@ -8,6 +9,7 @@ function App() {
     <Provider store={store}>
       <AppThemeProvider>
         <AppRouter />
+        <AppToastError />
       </AppThemeProvider>
     </Provider>
   );
