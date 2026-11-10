@@ -32,10 +32,10 @@ export default defineConfig([
         {
           printWidth: 120,
           tabWidth: 2,
-          tabs: false,
-          semicolons: true,
+          useTabs: false,
+          semi: true,
           singleQuote: true,
-          bracketSpaces: true,
+          bracketSpacing: true,
           trailingComma: 'all',
           arrowParens: 'avoid',
           endOfLine: 'auto',
