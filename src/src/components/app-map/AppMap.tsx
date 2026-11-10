@@ -35,74 +35,72 @@ function AppMap(props: AppMapProps) {
   const { mode } = useAppTheme();
 
   const styles = [
-    props.showAdministrativeLabels === undefined
-      ? undefined
-      : showAdministrativeLabels(props.showAdministrativeLabels!),
+    props.showAdministrativeLabels === undefined ? undefined : showAdministrativeLabels(props.showAdministrativeLabels),
     props.showAdministrativeCountryLabels === undefined || props.showAdministrativeLabels !== undefined
       ? undefined
-      : showAdministrativeCountryLabels(props.showAdministrativeCountryLabels!),
+      : showAdministrativeCountryLabels(props.showAdministrativeCountryLabels),
     props.showAdministrativeProvinceLabels === undefined || props.showAdministrativeLabels !== undefined
       ? undefined
-      : showAdministrativeProvinceLabels(props.showAdministrativeProvinceLabels!),
+      : showAdministrativeProvinceLabels(props.showAdministrativeProvinceLabels),
     props.showAdministrativeLocalityLabels === undefined || props.showAdministrativeLabels !== undefined
       ? undefined
-      : showAdministrativeLocalityLabels(props.showAdministrativeLocalityLabels!),
+      : showAdministrativeLocalityLabels(props.showAdministrativeLocalityLabels),
     props.showAdministrativeNeighborhoodLabels === undefined || props.showAdministrativeLabels !== undefined
       ? undefined
-      : showAdministrativeNeighborhoodLabels(props.showAdministrativeNeighborhoodLabels!),
+      : showAdministrativeNeighborhoodLabels(props.showAdministrativeNeighborhoodLabels),
     props.showAdministrativeLandParcelLabels === undefined || props.showAdministrativeLabels !== undefined
       ? undefined
-      : showAdministrativeLandParcelLabels(props.showAdministrativeLandParcelLabels!),
+      : showAdministrativeLandParcelLabels(props.showAdministrativeLandParcelLabels),
     props.showAdministrativeGeometry === undefined
       ? undefined
-      : showAdministrativeGeometry(props.showAdministrativeGeometry!),
+      : showAdministrativeGeometry(props.showAdministrativeGeometry),
     props.showAdministrativeCountryGeometry === undefined || props.showAdministrativeGeometry !== undefined
       ? undefined
-      : showAdministrativeCountryGeometry(props.showAdministrativeCountryGeometry!),
+      : showAdministrativeCountryGeometry(props.showAdministrativeCountryGeometry),
     props.showAdministrativeProvinceGeometry === undefined || props.showAdministrativeGeometry !== undefined
       ? undefined
-      : showAdministrativeProvinceGeometry(props.showAdministrativeProvinceGeometry!),
+      : showAdministrativeProvinceGeometry(props.showAdministrativeProvinceGeometry),
     props.showAdministrativeLocalityGeometry === undefined || props.showAdministrativeGeometry !== undefined
       ? undefined
-      : showAdministrativeLocalityGeometry(props.showAdministrativeLocalityGeometry!),
+      : showAdministrativeLocalityGeometry(props.showAdministrativeLocalityGeometry),
     props.showAdministrativeNeighborhoodGeometry === undefined || props.showAdministrativeGeometry !== undefined
       ? undefined
-      : showAdministrativeNeighborhoodGeometry(props.showAdministrativeNeighborhoodGeometry!),
+      : showAdministrativeNeighborhoodGeometry(props.showAdministrativeNeighborhoodGeometry),
     props.showAdministrativeLandParcelGeometry === undefined || props.showAdministrativeGeometry !== undefined
       ? undefined
-      : showAdministrativeLandParcelGeometry(props.showAdministrativeLandParcelGeometry!),
-    props.showRoadLabels === undefined ? undefined : showRoadLabels(props.showRoadLabels!),
+      : showAdministrativeLandParcelGeometry(props.showAdministrativeLandParcelGeometry),
+    props.showRoadLabels === undefined ? undefined : showRoadLabels(props.showRoadLabels),
     props.showRoadArterialLabels === undefined || props.showRoadLabels !== undefined
       ? undefined
-      : showRoadArterialLabels(props.showRoadArterialLabels!),
+      : showRoadArterialLabels(props.showRoadArterialLabels),
     props.showRoadHighwayLabels === undefined || props.showRoadLabels !== undefined
       ? undefined
-      : showRoadHighwayLabels(props.showRoadHighwayLabels!),
+      : showRoadHighwayLabels(props.showRoadHighwayLabels),
     props.showRoadHighwayControlledLabels === undefined || props.showRoadLabels !== undefined
       ? undefined
-      : showRoadHighwayControlledLabels(props.showRoadHighwayControlledLabels!),
+      : showRoadHighwayControlledLabels(props.showRoadHighwayControlledLabels),
     props.showRoadLocalLabels === undefined || props.showRoadLabels !== undefined
       ? undefined
-      : showRoadLocalLabels(props.showRoadLocalLabels!),
-    props.showRoadGeometry === undefined ? undefined : showRoadGeometry(props.showRoadGeometry!),
+      : showRoadLocalLabels(props.showRoadLocalLabels),
+    props.showRoadGeometry === undefined ? undefined : showRoadGeometry(props.showRoadGeometry),
     props.showRoadArterialGeometry === undefined || props.showRoadGeometry !== undefined
       ? undefined
-      : showRoadArterialGeometry(props.showRoadArterialGeometry!),
+      : showRoadArterialGeometry(props.showRoadArterialGeometry),
     props.showRoadHighwayGeometry === undefined || props.showRoadGeometry !== undefined
       ? undefined
-      : showRoadHighwayGeometry(props.showRoadHighwayGeometry!),
+      : showRoadHighwayGeometry(props.showRoadHighwayGeometry),
     props.showRoadHighwayControlledGeometry === undefined || props.showRoadGeometry !== undefined
       ? undefined
-      : showRoadHighwayControlledGeometry(props.showRoadHighwayControlledGeometry!),
+      : showRoadHighwayControlledGeometry(props.showRoadHighwayControlledGeometry),
     props.showRoadLocalGeometry === undefined || props.showRoadGeometry !== undefined
       ? undefined
-      : showRoadLocalGeometry(props.showRoadLocalGeometry!),
+      : showRoadLocalGeometry(props.showRoadLocalGeometry),
   ].filter(s => s !== undefined);
 
   return (
     <>
       {apiKey !== undefined && apiKey.length !== 0 && (
-        <APIProvider apiKey={apiKey!}>
+        <APIProvider apiKey={apiKey}>
           <Map
             style={{ width: '100%', height: '100%', flex: 1 }}
             colorScheme={mode === 'dark' ? 'DARK' : 'LIGHT'}

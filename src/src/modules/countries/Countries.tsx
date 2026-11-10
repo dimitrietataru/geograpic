@@ -12,11 +12,11 @@ function Countries() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchAllContinents());
+    void dispatch(fetchAllContinents());
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchCountries(filters));
+    void dispatch(fetchCountries(filters));
   }, [dispatch, filters]);
 
   return (

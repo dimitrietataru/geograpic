@@ -10,7 +10,7 @@ function Continents() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchContinents(filters));
+    void dispatch(fetchContinents(filters));
   }, [dispatch, filters]);
 
   return (

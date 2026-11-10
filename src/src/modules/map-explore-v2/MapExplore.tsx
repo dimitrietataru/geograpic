@@ -20,8 +20,8 @@ function MapExplore() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchAllContinents());
-    dispatch(fetchAllCountries());
+    void dispatch(fetchAllContinents());
+    void dispatch(fetchAllCountries());
   }, [dispatch]);
 
   const [zoom, setZoom] = useState<number>(ZOOM);

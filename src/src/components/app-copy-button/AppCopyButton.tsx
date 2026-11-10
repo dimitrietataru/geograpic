@@ -19,7 +19,7 @@ function AppCopyButton({ value }: AppCopyButtonProps) {
 
   return (
     <Tooltip title={copied ? 'Copied' : 'Copy to clipboard'}>
-      <IconButton className="copy-button" size="small" onClick={onClick} sx={{ height: 32, width: 32 }}>
+      <IconButton className="copy-button" size="small" onClick={() => void onClick()} sx={{ height: 32, width: 32 }}>
         <ContentCopyIcon
           fontSize="inherit"
           color={copied ? 'success' : 'inherit'}

@@ -4,7 +4,7 @@ function useAsyncOnMount(asyncFunc: () => Promise<void>): boolean {
   const [isReady, setIsReady] = useState<boolean>(false);
 
   useEffect(() => {
-    (async () => {
+    void (async () => {
       try {
         await asyncFunc();
       } catch {

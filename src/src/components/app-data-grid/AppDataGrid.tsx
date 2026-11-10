@@ -1,6 +1,9 @@
+import type { SxProps, Theme } from '@mui/material';
 import { DataGrid, type DataGridProps } from '@mui/x-data-grid';
 
-function AppDataGrid({ sx, getRowClassName, ...props }: DataGridProps) {
+const isSxArray = (value: SxProps<Theme>): value is Extract<SxProps<Theme>, readonly unknown[]> => Array.isArray(value);
+
+function AppDataGrid({ sx = [], getRowClassName, ...props }: DataGridProps) {
   return (
     <DataGrid
       sx={[
@@ -17,7 +20,7 @@ function AppDataGrid({ sx, getRowClassName, ...props }: DataGridProps) {
           '& .row-even': { backgroundColor: palette.dataGrid.rowEven },
           '& .row-odd': { backgroundColor: palette.dataGrid.rowOdd },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
+        ...(isSxArray(sx) ? sx : [sx]),
       ]}
       getRowClassName={getRowClassName ?? (p => (p.indexRelativeToCurrentPage % 2 === 0 ? 'row-even' : 'row-odd'))}
       checkboxSelection={false}

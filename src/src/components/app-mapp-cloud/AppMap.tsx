@@ -11,7 +11,7 @@ function AppMap(props: AppMapProps) {
   return (
     <>
       {apiKey !== undefined && apiKey.length !== 0 && (
-        <APIProvider apiKey={apiKey!}>
+        <APIProvider apiKey={apiKey}>
           <Map
             mapId={getGoogleMapsMapId()}
             style={{ width: '100%', height: '100%', flex: 1 }}

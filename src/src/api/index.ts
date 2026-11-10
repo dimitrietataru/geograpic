@@ -1,4 +1,4 @@
-import axios, { type AxiosInstance } from 'axios';
+import axios, { AxiosError, type AxiosInstance } from 'axios';
 import { getEnvironment, getGeograpiApi } from '../config';
 
 let api: AxiosInstance | undefined;
@@ -8,7 +8,7 @@ const initApi = (): AxiosInstance => {
 
   api.interceptors.response.use(
     response => response,
-    error => {
+    (error: AxiosError) => {
       const env = getEnvironment();
       if (env === 'Development' || !axios.isCancel(error)) {
         console.log(error);

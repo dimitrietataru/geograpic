@@ -15,13 +15,13 @@ export const toAppSortDirection = (sortDirection: GridSortDirection): SortDirect
 export const toMuiSortDirection = (sortDirection: SortDirection | string | undefined): GridSortDirection => {
   switch (sortDirection) {
     case '1':
-      return 'asc' as GridSortDirection;
+      return 'asc';
     case '2':
-      return 'desc' as GridSortDirection;
+      return 'desc';
     case SortDirection.Ascending:
-      return 'asc' as GridSortDirection;
+      return 'asc';
     case SortDirection.Descending:
-      return 'desc' as GridSortDirection;
+      return 'desc';
     default:
       return undefined;
   }
