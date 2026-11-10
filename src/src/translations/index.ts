@@ -4,11 +4,11 @@ import { resources } from './resources';
 
 const options = {
   lng: 'en',
-  fallbackLng: 'ro',
+  fallbackLng: 'en',
   returnNull: false,
-  ns: ['geograpi', 'common', 'map', 'menu', 'table'],
+  ns: ['common', 'map', 'menu', 'table'],
   defaultNS: 'common',
-  fallbackNS: ['geograpi', 'common'],
+  fallbackNS: ['common'],
   resources: resources,
   interpolation: { escapeValue: false },
   partialBundledLanguages: true,
