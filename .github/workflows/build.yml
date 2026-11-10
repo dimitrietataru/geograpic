@@ -1,0 +1,49 @@
+name: build-CI
+
+on:
+  push:
+    branches:
+    - ace
+    - main
+    - develop
+    - feature/**
+    - bugfix/**
+    tags-ignore:
+      - '**'
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: src
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+
+    - name: Setup Node
+      uses: actions/setup-node@v6
+      with:
+        node-version: 24.x
+        cache: npm
+        cache-dependency-path: src/package-lock.json
+
+    - name: npm ci
+      run: npm ci
+
+    - name: npm lint
+      run: npm run lint
+
+    - name: type check
+      run: npx tsc -b
+
+    - name: npm test
+      run: npm run test:run
+
+    - name: npm build
+      run: npm run build
