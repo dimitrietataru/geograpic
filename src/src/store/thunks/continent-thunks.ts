@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAppAsyncThunk } from '.';
 import { fetchContinentsRequest } from '../../api/requests/continent-requests';
 import type { ContinentQueryRequest, ContinentQueryResponse } from '../../types/continent';
 
@@ -9,7 +10,7 @@ export const fetchContinents = createAsyncThunk(
   },
 );
 
-export const fetchAllContinents = createAsyncThunk(
+export const fetchAllContinents = createAppAsyncThunk(
   'continents/fetch-all',
   async (): Promise<ContinentQueryResponse> => {
     const request = {
@@ -18,5 +19,12 @@ export const fetchAllContinents = createAsyncThunk(
     } as ContinentQueryRequest;
 
     return fetchContinentsRequest(request);
+  },
+  {
+    condition: (_, { getState }) => {
+      const { allLoading, allLoaded } = getState().continents;
+
+      return !allLoading && !allLoaded;
+    },
   },
 );

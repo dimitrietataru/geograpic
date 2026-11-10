@@ -6,6 +6,8 @@ import { fetchAllCountries, fetchCountries } from '../thunks/country-thunks';
 const initialState = countryAdapter.getInitialState({
   loading: false,
   initialLoaded: false,
+  allLoading: false,
+  allLoaded: false,
   error: null as string | null,
   count: 0,
 });
@@ -47,6 +49,7 @@ const countrySlice = createSlice({
       .addCase(fetchCountries.fulfilled, (state, action) => {
         state.loading = false;
         state.initialLoaded = true;
+        state.allLoaded = false;
         state.count = action.payload.count;
         countryAdapter.setAll(state, action.payload.items);
       })
@@ -59,15 +62,19 @@ const countrySlice = createSlice({
       })
       .addCase(fetchAllCountries.pending, state => {
         state.loading = true;
+        state.allLoading = true;
       })
       .addCase(fetchAllCountries.fulfilled, (state, action) => {
         state.loading = false;
         state.initialLoaded = true;
+        state.allLoading = false;
+        state.allLoaded = true;
         state.count = action.payload.count;
         countryAdapter.setAll(state, action.payload.items);
       })
       .addCase(fetchAllCountries.rejected, state => {
         state.loading = false;
+        state.allLoading = false;
       });
   },
 });
