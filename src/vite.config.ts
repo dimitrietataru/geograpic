@@ -1,8 +1,9 @@
-import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import babel from '@rolldown/plugin-babel';
+import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import checker from 'vite-plugin-checker';
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [
     react(),
     babel({
@@ -10,11 +11,19 @@ export default defineConfig({
         reactCompilerPreset({
           logger: {
             logEvent(filename, event) {
-              console.log(`[Compiler] ${event.kind}: ${filename}`);
+              if (command === 'serve' && (event.kind === 'CompileError' || event.kind === 'PipelineError')) {
+                console.warn(`[Compiler] ${event.kind}: ${filename}.`);
+              }
             },
           },
         }),
       ],
     }),
+    checker({
+      typescript: { buildMode: true },
+      eslint: { lintCommand: 'eslint .', useFlatConfig: true },
+      overlay: { initialIsOpen: false },
+      enableBuild: false,
+    }),
   ],
-});
+}));
