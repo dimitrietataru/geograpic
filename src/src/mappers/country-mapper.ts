@@ -2,6 +2,7 @@ import isArray from 'lodash/isArray';
 import toNumber from 'lodash/toNumber';
 import toString from 'lodash/toString';
 import type { Country, CountryQueryResponse } from '../types/country';
+import { mapQueryResponse } from './base/query-response-mapper';
 
 export const mapCountry = (country?: Partial<Country>): Country => {
   return {
@@ -11,12 +12,12 @@ export const mapCountry = (country?: Partial<Country>): Country => {
     codeA3: toString(country?.codeA3),
     name: toString(country?.name),
     nameOfficial: toString(country?.nameOfficial),
-    area: toNumber(country?.area),
-    population: toNumber(country?.population),
+    area: toNumber(country?.area ?? 0),
+    population: toNumber(country?.population ?? 0),
   };
 };
 
-export const mapCounties = (countries?: Partial<Country[]>): Country[] => {
+export const mapCountries = (countries?: Partial<Country[]>): Country[] => {
   if (!isArray(countries)) {
     return [];
   }
@@ -25,10 +26,5 @@ export const mapCounties = (countries?: Partial<Country[]>): Country[] => {
 };
 
 export const mapPagedCountries = (response?: Partial<CountryQueryResponse>): CountryQueryResponse => {
-  return {
-    page: toNumber(response?.page),
-    size: toNumber(response?.size),
-    count: toNumber(response?.count),
-    items: mapCounties(response?.items),
-  };
+  return mapQueryResponse(response, mapCountries);
 };
