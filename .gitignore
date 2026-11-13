@@ -6,3 +6,10 @@ src/public/appsettings.json
 
 # Build
 src/dist
+
+# Agents / Instructions
+.claude/
+AGENTS.md
+CLAUDE.md
+CLAUDE.local.md
+STYLE.md
