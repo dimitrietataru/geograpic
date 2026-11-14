@@ -1,20 +1,25 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import type { Continent } from '../../../types/continent';
 import type { Country } from '../../../types/country';
 import type { TranslatedGridColDef } from '../../../types/translations/TranslatedGridColDef';
 import ColumnArea from './column-area';
 import ColumnCode from './column-code';
+import ColumnContinent from './column-continent';
+import ColumnId from './column-id';
+import ColumnName from './column-name';
 import ColumnPopulation from './column-population';
 
-export const getColumns = (continentsById: Map<number, string>): TranslatedGridColDef<Country>[] => [
+export const getColumns = (continentsById: Map<number, Continent>): TranslatedGridColDef<Country>[] => [
   {
     field: 'id',
     headerName: 'header.id',
     sortable: true,
     filterable: false,
     hideable: true,
-    minWidth: 120,
-    maxWidth: 200,
-    renderCell: data => <Typography variant="tableText1">{data.row.id}</Typography>,
+    disableColumnMenu: true,
+    minWidth: 100,
+    maxWidth: 160,
+    renderCell: data => <ColumnId id={data.row.id} />,
   },
   {
     field: 'name',
@@ -23,8 +28,8 @@ export const getColumns = (continentsById: Map<number, string>): TranslatedGridC
     filterable: true,
     hideable: false,
     flex: 1,
-    minWidth: 500,
-    renderCell: data => <Typography variant="tableText1">{`${data.row.name} (${data.row.nameOfficial})`}</Typography>,
+    minWidth: 200,
+    renderCell: data => <ColumnName name={data.row.name} nameOfficial={data.row.nameOfficial} />,
   },
   {
     field: 'code',
@@ -32,6 +37,7 @@ export const getColumns = (continentsById: Map<number, string>): TranslatedGridC
     sortable: true,
     filterable: true,
     hideable: true,
+    disableColumnMenu: true,
     minWidth: 120,
     maxWidth: 200,
     renderCell: data => <ColumnCode codeA2={data.row.code} codeA3={data.row.codeA3} />,
@@ -42,6 +48,7 @@ export const getColumns = (continentsById: Map<number, string>): TranslatedGridC
     sortable: true,
     filterable: false,
     hideable: true,
+    disableColumnMenu: true,
     minWidth: 160,
     maxWidth: 200,
     renderCell: data => <ColumnArea area={data.row.area} />,
@@ -52,6 +59,7 @@ export const getColumns = (continentsById: Map<number, string>): TranslatedGridC
     sortable: true,
     filterable: false,
     hideable: true,
+    disableColumnMenu: true,
     minWidth: 160,
     maxWidth: 200,
     renderCell: data => <ColumnPopulation population={data.row.population} />,
@@ -62,9 +70,11 @@ export const getColumns = (continentsById: Map<number, string>): TranslatedGridC
     sortable: true,
     filterable: false,
     hideable: false,
+    disableColumnMenu: true,
     flex: 1,
-    minWidth: 200,
-    renderCell: data => <Typography variant="tableText1">{continentsById.get(data.row.continentId) ?? '-'}</Typography>,
+    minWidth: 100,
+    maxWidth: 160,
+    renderCell: data => <ColumnContinent continent={continentsById.get(data.row.continentId)} />,
   },
   {
     field: 'actions',
@@ -72,10 +82,10 @@ export const getColumns = (continentsById: Map<number, string>): TranslatedGridC
     headerAlign: 'center',
     sortable: false,
     filterable: false,
-    disableColumnMenu: true,
-    disableReorder: true,
     hideable: false,
     resizable: false,
+    disableColumnMenu: true,
+    disableReorder: true,
     width: 160,
     renderCell: () => <Box sx={{ display: 'flex', justifyContent: 'end' }}>..</Box>,
   },

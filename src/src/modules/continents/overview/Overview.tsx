@@ -77,6 +77,7 @@ function Overview() {
         pageSizeOptions={[2, 5, 10, { value: -1, label: t('table.footer.all') }]}
         loading={loading}
         rowHeight={60}
+        initialState={{ columns: { columnVisibilityModel: { id: false } } }}
       />
     </Box>
   );

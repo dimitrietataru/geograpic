@@ -5,8 +5,8 @@ import type { ColumnGoogleIdProps } from './types';
 function ColumnGoogleId({ googleId }: ColumnGoogleIdProps) {
   return (
     <CopyableColumn value={googleId}>
-      <Box sx={{ height: '100%', display: 'flex', alignItems: 'center' }}>
-        <Typography variant="tableText2" sx={{ color: 'text.secondary' }}>
+      <Box sx={{ height: '100%', minWidth: 0, display: 'flex', alignItems: 'center' }}>
+        <Typography variant="tableText2" noWrap sx={{ color: 'text.secondary' }}>
           {googleId}
         </Typography>
       </Box>

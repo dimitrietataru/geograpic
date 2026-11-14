@@ -23,7 +23,7 @@ function ColumnPopulation(props: ColumnPopulationProps) {
 
   return (
     <Tooltip describeChild arrow title={localeValue} placement="left">
-      <Box sx={{ height: '100%', display: 'flex', alignItems: 'center' }}>
+      <Box sx={{ height: '100%', width: '100%', display: 'flex', alignItems: 'center' }}>
         <Typography variant="tableText1">{displayValues.value}</Typography>
         {displayValues.suffix && (
           <Box sx={{ height: '100%', ml: 0.5, display: 'flex', alignItems: 'center' }}>

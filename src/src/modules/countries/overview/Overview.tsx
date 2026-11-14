@@ -25,7 +25,7 @@ function Overview() {
   const countries = useAppSelector(getCountriesSelector);
 
   const continents = useAppSelector(getContinentsSelector);
-  const continentsById = useMemo(() => new Map(continents.map(c => [c.id, c.name])), [continents]);
+  const continentsById = useMemo(() => new Map(continents.map(c => [c.id, c])), [continents]);
 
   const onSortChange = (model: GridSortModel) => {
     if (!model.length) {
