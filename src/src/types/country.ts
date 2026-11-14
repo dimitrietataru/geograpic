@@ -10,6 +10,13 @@ export interface Country extends ModelBase {
   nameOfficial: string;
   area: number;
   population: number;
+  googleId: string;
+  boundaryN: number;
+  boundaryS: number;
+  boundaryE: number;
+  boundaryW: number;
+  centerLat: number;
+  centerLng: number;
 }
 
 interface CountryQueryFilter {

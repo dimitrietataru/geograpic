@@ -14,6 +14,13 @@ export const mapCountry = (country?: Partial<Country>): Country => {
     nameOfficial: toString(country?.nameOfficial),
     area: toNumber(country?.area ?? 0),
     population: toNumber(country?.population ?? 0),
+    googleId: toString(country?.googleId),
+    boundaryN: toNumber(country?.boundaryN ?? 0),
+    boundaryS: toNumber(country?.boundaryS ?? 0),
+    boundaryE: toNumber(country?.boundaryE ?? 0),
+    boundaryW: toNumber(country?.boundaryW ?? 0),
+    centerLat: toNumber(country?.centerLat ?? 0),
+    centerLng: toNumber(country?.centerLng ?? 0),
   };
 };
 

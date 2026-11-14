@@ -5,6 +5,8 @@ import type { TranslatedGridColDef } from '../../../types/translations/Translate
 import ColumnArea from './column-area';
 import ColumnCode from './column-code';
 import ColumnContinent from './column-continent';
+import ColumnCoordinates from './column-coordinates';
+import ColumnGoogleId from './column-google-id';
 import ColumnId from './column-id';
 import ColumnName from './column-name';
 import ColumnPopulation from './column-population';
@@ -20,6 +22,18 @@ export const getColumns = (continentsById: Map<number, Continent>): TranslatedGr
     minWidth: 100,
     maxWidth: 160,
     renderCell: data => <ColumnId id={data.row.id} />,
+  },
+  {
+    field: 'continentId',
+    headerName: 'header.countries.continent',
+    sortable: true,
+    filterable: false,
+    hideable: false,
+    disableColumnMenu: true,
+    flex: 1,
+    minWidth: 100,
+    maxWidth: 140,
+    renderCell: data => <ColumnContinent continent={continentsById.get(data.row.continentId)} />,
   },
   {
     field: 'name',
@@ -65,16 +79,25 @@ export const getColumns = (continentsById: Map<number, Continent>): TranslatedGr
     renderCell: data => <ColumnPopulation population={data.row.population} />,
   },
   {
-    field: 'continentId',
-    headerName: 'header.countries.continent',
+    field: 'googleId',
+    headerName: 'header.googleId',
     sortable: true,
     filterable: false,
-    hideable: false,
-    disableColumnMenu: true,
+    hideable: true,
     flex: 1,
-    minWidth: 100,
-    maxWidth: 160,
-    renderCell: data => <ColumnContinent continent={continentsById.get(data.row.continentId)} />,
+    minWidth: 200,
+    renderCell: data => <ColumnGoogleId googleId={data.row.googleId} />,
+  },
+  {
+    field: 'coordinates',
+    headerName: 'header.coordinates',
+    sortable: false,
+    filterable: false,
+    hideable: true,
+    flex: 1,
+    minWidth: 180,
+    maxWidth: 200,
+    renderCell: data => <ColumnCoordinates lat={data.row.centerLat} lng={data.row.centerLng} />,
   },
   {
     field: 'actions',

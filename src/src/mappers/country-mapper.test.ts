@@ -11,6 +11,13 @@ const romania: Country = {
   nameOfficial: 'Romania',
   area: 238397,
   population: 19000000,
+  googleId: 'ChI..',
+  boundaryN: 48.27,
+  boundaryS: 43.62,
+  boundaryE: 29.76,
+  boundaryW: 20.26,
+  centerLat: 45.94,
+  centerLng: 24.97,
 };
 
 describe('mapCountry', () => {
@@ -28,6 +35,13 @@ describe('mapCountry', () => {
       nameOfficial: undefined,
       area: undefined,
       population: undefined,
+      googleId: undefined,
+      boundaryN: undefined,
+      boundaryS: undefined,
+      boundaryE: undefined,
+      boundaryW: undefined,
+      centerLat: undefined,
+      centerLng: undefined,
     });
 
     expect(result.id).toBeNaN();
@@ -38,6 +52,13 @@ describe('mapCountry', () => {
     expect(result.nameOfficial).toEqual('');
     expect(result.area).toEqual(0);
     expect(result.population).toEqual(0);
+    expect(result.googleId).toEqual('');
+    expect(result.boundaryN).toEqual(0);
+    expect(result.boundaryS).toEqual(0);
+    expect(result.boundaryE).toEqual(0);
+    expect(result.boundaryW).toEqual(0);
+    expect(result.centerLat).toEqual(0);
+    expect(result.centerLng).toEqual(0);
   });
 });
 
