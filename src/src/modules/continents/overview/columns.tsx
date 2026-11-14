@@ -1,8 +1,11 @@
 import { Box } from '@mui/material';
 import type { Continent } from '../../../types/continent';
 import type { TranslatedGridColDef } from '../../../types/translations/TranslatedGridColDef';
+import ColumnCode from './column-code';
 import ColumnCoordinates from './column-coordinates';
 import ColumnGoogleId from './column-google-id';
+import ColumnId from './column-id';
+import ColumnName from './column-name';
 
 export const columns: TranslatedGridColDef<Continent>[] = [
   {
@@ -12,9 +15,9 @@ export const columns: TranslatedGridColDef<Continent>[] = [
     filterable: false,
     hideable: true,
     flex: 1,
-    minWidth: 120,
-    maxWidth: 200,
-    renderCell: data => <Box>{data.row.id}</Box>,
+    minWidth: 100,
+    maxWidth: 160,
+    renderCell: data => <ColumnId id={data.row.id} />,
   },
   {
     field: 'code',
@@ -25,7 +28,7 @@ export const columns: TranslatedGridColDef<Continent>[] = [
     flex: 1,
     minWidth: 120,
     maxWidth: 200,
-    renderCell: data => <Box>{data.row.code}</Box>,
+    renderCell: data => <ColumnCode code={data.row.code} />,
   },
   {
     field: 'name',
@@ -35,7 +38,7 @@ export const columns: TranslatedGridColDef<Continent>[] = [
     hideable: false,
     flex: 1,
     minWidth: 200,
-    renderCell: data => <Box>{data.row.name}</Box>,
+    renderCell: data => <ColumnName name={data.row.name} />,
   },
   {
     field: 'googleId',

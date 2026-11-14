@@ -7,7 +7,7 @@ function ColumnCoordinates({ lat, lng }: ColumnCoordinatesProps) {
   return (
     <CopyableColumn value={`${lat},${lng}`}>
       <Tooltip placement="left" arrow describeChild title={`${lat}° N, ${lng}° E`}>
-        <Box sx={{ height: '100%', display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ height: '100%', width: '100%', display: 'flex', alignItems: 'center' }}>
           <Box sx={{ width: '4rem', textAlign: 'right', flexShrink: 0 }}>
             <Typography variant="tableText1">{`${round(lat, 2)}° N`}</Typography>
           </Box>

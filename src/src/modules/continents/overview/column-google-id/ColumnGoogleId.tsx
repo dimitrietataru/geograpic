@@ -6,7 +6,9 @@ function ColumnGoogleId({ googleId }: ColumnGoogleIdProps) {
   return (
     <CopyableColumn value={googleId}>
       <Box sx={{ height: '100%', display: 'flex', alignItems: 'center' }}>
-        <Typography variant="tableText1">{googleId}</Typography>
+        <Typography variant="tableText2" sx={{ color: 'text.secondary' }}>
+          {googleId}
+        </Typography>
       </Box>
     </CopyableColumn>
   );
