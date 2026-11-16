@@ -39,9 +39,10 @@ export const getContinentStrokeColor = (theme: Theme, continentCode: string): st
 };
 
 export const getContinentFillOpacity = (zoom: number): number => {
-  return zoom <= 3 ? 0.8 : zoom <= 4 ? 0.2 : 0;
+  return zoom >= 2 ? 1 : 0;
+  // return zoom <= 3 ? 0.8 : zoom <= 4 ? 0.8 : 0;
 };
 
 export const getContinentStrokeWeight = (zoom: number): number => {
-  return zoom <= 3 ? 0.6 : zoom <= 4 ? 0.2 : 0;
+  return zoom <= 3 ? 0.6 : zoom <= 4 ? 0.4 : 0.2;
 };

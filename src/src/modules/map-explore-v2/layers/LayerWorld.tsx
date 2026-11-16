@@ -1,109 +1,113 @@
 import { Chip, Tooltip } from '@mui/material';
-import { blue, red } from '@mui/material/colors';
-import { AdvancedMarker, useMap } from '@vis.gl/react-google-maps';
-import { useEffect, useState } from 'react';
+import { blue } from '@mui/material/colors';
+import { AdvancedMarker, CollisionBehavior, useMap } from '@vis.gl/react-google-maps';
+import { useEffect, useMemo, useState } from 'react';
 import { useExploreFilters } from '../../../hooks/filters/useExploreFilters';
-
-const countryPoints: Record<string, google.maps.LatLngLiteral> = {
-  ChIJw3aJlSb_sUARlLEEqJJP74Q: { lat: 46.0, lng: 25.0 },
-  // Add your other country Place IDs and coordinates
-};
+import {
+  getContinentFillColor,
+  getContinentFillOpacity,
+  getContinentStrokeColor,
+  getContinentStrokeWeight,
+} from '../../../mappers/geo/map-colors-mapper';
+import { useAppSelector } from '../../../store';
+import { getContinentsSelector } from '../../../store/selectors/continent-selector';
+import {
+  getDefinedCountriesSelector,
+  getLargestCountriesByContinentSelector,
+} from '../../../store/selectors/country-selector';
+import { useAppTheme } from '../../../theme/hooks/useAppTheme';
 
 function LayerWorld() {
   const map = useMap();
   const { setFilters } = useExploreFilters();
+  const { theme } = useAppTheme();
   const [isHovered, setIsHovered] = useState<string | null>(null);
+
+  const continents = useAppSelector(getContinentsSelector);
+  const definedCountries = useAppSelector(getDefinedCountriesSelector);
+  const largestCountries = useAppSelector(getLargestCountriesByContinentSelector);
+
+  const continentCodesById = useMemo(() => new Map(continents.map(c => [c.id, c.code])), [continents]);
+  const continentCodesByPlaceId = useMemo(
+    () => new Map(definedCountries.map(c => [c.googleId, continentCodesById.get(c.continentId)])),
+    [definedCountries, continentCodesById],
+  );
 
   useEffect(() => {
     if (!map) {
       return;
     }
 
-    // const features = map.data.addGeoJson(layer);
-    // const stylingFunction = (feature: google.maps.Data.Feature) => {
-    //   const continentCode = String(feature.getProperty('code'));
-    //   const fillColor = getContinentFillColor(theme, continentCode);
-    //   const strokeColor = getContinentStrokeColor(theme, continentCode);
-
-    //   const zoom = map.getZoom() ?? 3;
-    //   const fillOpacity = getContinentFillOpacity(zoom);
-    //   const strokeWeight = getContinentStrokeWeight(zoom);
-
-    //   return {
-    //     fillColor: fillColor,
-    //     fillOpacity: fillOpacity,
-    //     strokeColor: strokeColor,
-    //     strokeWeight: strokeWeight,
-    //   };
-    // };
-
-    // map.data.setStyle(stylingFunction);
-
-    // const onClick = map.data.addListener('click', (event: google.maps.Data.MouseEvent) => {
-    //   const continentCode = String(event.feature.getProperty('code'));
-    //   setFilters({ mapType: 'Continent', selectedContinent: continentCode });
-    // });
-
-    // const onZoomChange = map.addListener('zoom_changed', () => {
-    //   map.data.setStyle(stylingFunction);
-    // });
-
     const featureLayer = map.getFeatureLayer('COUNTRY');
-    featureLayer.style = (options: google.maps.FeatureStyleFunctionOptions) => {
-      const place = options.feature as google.maps.PlaceFeature;
-      console.log('PLACE: ', place.placeId);
+    const styleFeatureLayer = () => {
+      const zoom = map.getZoom() ?? 3;
+      const fillOpacity = getContinentFillOpacity(zoom);
+      const strokeWeight = getContinentStrokeWeight(zoom);
 
-      if (place.placeId === 'ChIJw3aJlSb_sUARlLEEqJJP74Q') {
+      featureLayer.style = (options: google.maps.FeatureStyleFunctionOptions) => {
+        const place = options.feature as google.maps.PlaceFeature;
+        const continentCode = continentCodesByPlaceId.get(place.placeId);
+
+        if (!continentCode) {
+          return null;
+        }
+
         return {
-          fillColor: red[500],
-          fillOpacity: 0.8,
-          strokeColor: red[900],
-          strokeWeight: 0.6,
+          fillColor: getContinentFillColor(theme, continentCode),
+          fillOpacity: fillOpacity,
+          strokeColor: getContinentStrokeColor(theme, continentCode),
+          strokeWeight: strokeWeight,
         };
-      }
-
-      return null;
+      };
     };
+
+    styleFeatureLayer();
+
+    const onZoomChange = map.addListener('zoom_changed', styleFeatureLayer);
 
     return () => {
       featureLayer.style = null;
+      onZoomChange.remove();
     };
-
-    // return () => {
-    //   features.forEach(f => map.data.remove(f));
-    //   onClick.remove();
-    //   onZoomChange.remove();
-    // };
-  }, [map]);
+  }, [map, theme, continentCodesByPlaceId]);
 
   return (
     <>
-      {Object.entries(countryPoints).map(([placeId, position]) => {
-        const isHoveredCountry = isHovered === placeId;
+      {largestCountries.map((country, index) => {
+        const isHoveredCountry = isHovered === country.googleId;
+        // largestCountries is sorted by area, descending: larger countries get a higher priority.
+        const priority = largestCountries.length - index;
         return (
           <AdvancedMarker
-            key={placeId}
-            position={position}
-            anchorTop="-50%"
-            // title={placeId}
-            onClick={() => setFilters({ mapType: 'Continent', selectedContinent: 'EU' })}
-            onMouseEnter={() => setIsHovered(placeId)}
+            key={country.id}
+            position={{ lat: country.centerLat, lng: country.centerLng }}
+            // anchorTop="-50%"
+            title={country.googleId}
+            onClick={() =>
+              setFilters({
+                mapStyle: 'Administrative',
+                mapType: 'Continent',
+                selectedContinent: continentCodesById.get(country.continentId),
+              })
+            }
+            onMouseEnter={() => setIsHovered(country.googleId)}
             onMouseLeave={() => setIsHovered(null)}
-            zIndex={isHoveredCountry ? 1000 : 1}
+            collisionBehavior={CollisionBehavior.OPTIONAL_AND_HIDES_LOWER_PRIORITY}
+            zIndex={isHoveredCountry ? 1000 : priority}
           >
-            <Tooltip title="Romania" placement="top">
+            <Tooltip title={country.name} placement="top">
               <Chip
-                label="RO"
+                label={country.code}
                 color="primary"
                 size="small"
-                variant="outlined"
+                variant="filled"
                 sx={{
                   fontWeight: 400,
-                  fontSize: 12,
+                  fontSize: 8,
                   boxShadow: 2,
                   cursor: 'pointer',
-                  //   border: '6px solid blue.900',
                   borderColor: blue[900],
+                  transform: 'translateY(50%)',
                 }}
               />
             </Tooltip>

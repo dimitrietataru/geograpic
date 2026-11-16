@@ -9,3 +9,4 @@ export const getEnvironment = () => appSettings?.ENVIRONMENT;
 export const getGeograpiApi = () => appSettings?.GEOGRAPI_API;
 export const getGoogleMapsApiKey = () => appSettings?.GOOGLE_MAPS_API_KEY;
 export const getGoogleMapsMapId = () => appSettings?.GOOGLE_MAPS_MAP_ID;
+export const getGoogleMapsMapIdAdmin = () => appSettings?.GOOGLE_MAPS_MAP_ID_ADMIN;

@@ -43,7 +43,7 @@ function LayerWorld() {
 
     const onClick = map.data.addListener('click', (event: google.maps.Data.MouseEvent) => {
       const continentCode = String(event.feature.getProperty('code'));
-      setFilters({ mapType: 'Continent', selectedContinent: continentCode });
+      setFilters({ mapStyle: 'Administrative', mapType: 'Continent', selectedContinent: continentCode });
     });
 
     const onZoomChange = map.addListener('zoom_changed', () => {

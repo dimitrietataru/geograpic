@@ -18,6 +18,7 @@ function MapBreadcrumbs() {
     event.preventDefault();
 
     setFilters({
+      mapStyle: 'Administrative',
       mapType: 'World',
       selectedContinent: undefined,
       selectedCountry: undefined,
@@ -32,6 +33,7 @@ function MapBreadcrumbs() {
     }
 
     setFilters({
+      mapStyle: 'Administrative',
       mapType: 'Continent',
       selectedContinent: filters.selectedContinent,
       selectedCountry: undefined,

@@ -5,6 +5,10 @@ const en = {
       continent: 'Continent',
       country: 'Țară',
     },
+    style: {
+      default: 'Google',
+      administrative: 'Administrative',
+    },
   },
 } as const;
 

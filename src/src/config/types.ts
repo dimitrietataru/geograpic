@@ -3,4 +3,5 @@ export interface AppSettings {
   GEOGRAPI_API: string;
   GOOGLE_MAPS_API_KEY: string;
   GOOGLE_MAPS_MAP_ID: string;
+  GOOGLE_MAPS_MAP_ID_ADMIN: string;
 }

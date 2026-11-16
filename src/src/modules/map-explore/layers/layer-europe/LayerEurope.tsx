@@ -31,7 +31,12 @@ function LayerEurope() {
       const continentCode = toString(event.feature.getProperty('continent')) || 'Unknown ISO Code';
       const countryCode = toString(event.feature.getProperty('codeiso2')) || 'Unknown ISO Code';
 
-      setFilters({ mapType: 'Country', selectedContinent: continentCode, selectedCountry: countryCode });
+      setFilters({
+        mapStyle: 'Administrative',
+        mapType: 'Country',
+        selectedContinent: continentCode,
+        selectedCountry: countryCode,
+      });
     });
 
     return () => {
