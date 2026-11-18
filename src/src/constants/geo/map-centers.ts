@@ -1,6 +1,6 @@
 import type { MapPoint } from '../../types/geo/MapPoint';
 
-export const WORLD_CENTER: MapPoint = { lat: 22.5, lng: 0 };
+export const WORLD_CENTER: MapPoint = { lat: 22.5, lng: 8 };
 
 export const CONTINENT_CENTERS: Record<string, MapPoint> = {
   AF: { lat: 54, lng: 25 },
