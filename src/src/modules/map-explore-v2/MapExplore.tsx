@@ -6,6 +6,7 @@ import AppMap from '../../components/app-mapp-cloud';
 import { getGoogleMapsMapId, getGoogleMapsMapIdAdmin } from '../../config';
 import { WORLD_BOUNDS } from '../../constants/geo/map-bounds';
 import { WORLD_CENTER } from '../../constants/geo/map-centers';
+import { MapZoom } from '../../constants/geo/map-zoom';
 import { useExploreFilters } from '../../hooks/filters/useExploreFilters';
 import { useAppDispatch } from '../../store';
 import { fetchAllContinents } from '../../store/thunks/continent-thunks';
@@ -14,10 +15,6 @@ import MapBreadcrumbs from '../map-explore/map-breadcrumbs';
 import MapCameraControl from './controls/map-camera-control';
 import MapStyleControl from './controls/map-style-control';
 import AdministrativeLayer from './layers/administrative-layer';
-
-const ZOOM = 3;
-const MIN_ZOOM = 3;
-const MAX_ZOOM = 12;
 
 function MapExplore() {
   const { filters } = useExploreFilters();
@@ -29,10 +26,9 @@ function MapExplore() {
     void dispatch(fetchAllCountries());
   }, [dispatch]);
 
-  const [zoom, setZoom] = useState<number>(ZOOM);
+  const [zoom, setZoom] = useState<number>(MapZoom.default);
 
   const onZoomChange = (event: MapCameraChangedEvent): void => {
-    console.log('ZOOM: ', event.detail.zoom);
     setZoom(event.detail.zoom);
   };
 
@@ -49,8 +45,8 @@ function MapExplore() {
         defaultCenter={WORLD_CENTER}
         restriction={{ latLngBounds: WORLD_BOUNDS, strictBounds: true }}
         defaultZoom={zoom}
-        minZoom={MIN_ZOOM}
-        maxZoom={MAX_ZOOM}
+        minZoom={MapZoom.min}
+        maxZoom={MapZoom.max}
         isFractionalZoomEnabled={false}
         onZoomChanged={onZoomChange}
       >

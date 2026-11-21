@@ -107,12 +107,14 @@ declare module '@mui/material/styles' {
     tableText1: React.CSSProperties;
     tableText2: React.CSSProperties;
     mapPin1: React.CSSProperties;
+    mapPin2: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
     tableText1: React.CSSProperties;
     tableText2: React.CSSProperties;
     mapPin1: React.CSSProperties;
+    mapPin2: React.CSSProperties;
   }
 }
 
@@ -121,6 +123,7 @@ declare module '@mui/material/Typography' {
     tableText1: true;
     tableText2: true;
     mapPin1: true;
+    mapPin2: true;
   }
 }
 
@@ -154,6 +157,16 @@ export const baseTheme: ThemeOptions = {
       fontSize: '1rem',
       fontWeight: 500,
       lineHeight: 1.25,
+      letterSpacing: 2,
+      cursor: 'pointer',
+      textTransform: 'uppercase',
+    },
+    mapPin2: {
+      fontSize: '0.6rem',
+      fontWeight: 500,
+      lineHeight: 1,
+      letterSpacing: 0.5,
+      cursor: 'pointer',
       textTransform: 'uppercase',
     },
     button: {

@@ -19,7 +19,6 @@ function ContinentMapPin(props: ContinentMapPinPros) {
           variant="filled"
           sx={{
             typography: 'mapPin1',
-            cursor: 'pointer',
             boxShadow: 1,
             border: 1.5,
             borderColor: theme => getContinentStrokeColor(theme, props.code),

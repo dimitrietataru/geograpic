@@ -9,6 +9,10 @@ export type AppDispatch = typeof store.dispatch;
 
 export const useAppDispatch = (): AppDispatch => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+export const useAppArgsSelector = <TArgs extends unknown[], TResult>(
+  selector: (state: RootState, ...args: TArgs) => TResult,
+  ...args: TArgs
+): TResult => useSelector((state: RootState) => selector(state, ...args));
 
 const appReducer = combineReducers({
   continents: continentSlice,

@@ -1,6 +1,7 @@
 import { useMap } from '@vis.gl/react-google-maps';
 import { useEffect } from 'react';
 import ContinentMapPin from '../../../../../components/app-map-pins/continent-map-pin';
+import { MapZoom } from '../../../../../constants/geo/map-zoom';
 import { useExploreFilters } from '../../../../../hooks/filters/useExploreFilters';
 import {
   getContinentFillColor,
@@ -12,6 +13,7 @@ import { useAppSelector } from '../../../../../store';
 import { getContinentsSelector } from '../../../../../store/selectors/continent-selector';
 import { getContinentsByCountryPlaceIdSelector } from '../../../../../store/selectors/country-selector';
 import { useAppTheme } from '../../../../../theme/hooks/useAppTheme';
+import type { Continent } from '../../../../../types/continent';
 
 function LayerWorld() {
   const map = useMap();
@@ -28,7 +30,7 @@ function LayerWorld() {
 
     const featureLayer = map.getFeatureLayer('COUNTRY');
     const styleFeatureLayer = () => {
-      const zoom = map.getZoom() ?? 3;
+      const zoom = map.getZoom() ?? MapZoom.default;
       const fillOpacity = getContinentFillOpacity(zoom);
       const strokeWeight = getContinentStrokeWeight(zoom);
 
@@ -70,13 +72,13 @@ function LayerWorld() {
       onZoomChange.remove();
       onCountryClick.remove();
     };
-  }, [map, theme, continentsByPlaceId, setFilters]);
+  }, [map, theme, setFilters, continentsByPlaceId]);
 
-  const onContinentClick = (continentCode: string) => {
+  const onContinentClick = (continent: Continent) => {
     setFilters({
       mapStyle: 'Administrative',
       mapType: 'Continent',
-      selectedContinent: continentCode,
+      selectedContinent: continent.code,
     });
   };
 
@@ -90,7 +92,7 @@ function LayerWorld() {
           name={continent.name}
           placeId={continent.googleId}
           position={{ lat: continent.centerLat, lng: continent.centerLng }}
-          onClick={() => onContinentClick(continent.code)}
+          onClick={() => onContinentClick(continent)}
         />
       ))}
     </>

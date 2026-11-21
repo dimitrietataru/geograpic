@@ -1,8 +1,9 @@
 import { useMap } from '@vis.gl/react-google-maps';
 import { useEffect } from 'react';
-import { useExploreFilters } from '../../../../hooks/filters/useExploreFilters';
 import { WORLD_BOUNDS } from '../../../../constants/geo/map-bounds';
 import { WORLD_CENTER } from '../../../../constants/geo/map-centers';
+import { MapZoom } from '../../../../constants/geo/map-zoom';
+import { useExploreFilters } from '../../../../hooks/filters/useExploreFilters';
 import { toBoundary } from '../../../../mappers/geo/boundaries-mapper';
 import { toCenter } from '../../../../mappers/geo/center-mapper';
 
@@ -17,21 +18,21 @@ function MapCameraControl() {
 
     if (filters.mapStyle === 'Default') {
       map.setOptions({
-        minZoom: 3,
-        maxZoom: 10,
+        minZoom: MapZoom.min,
+        maxZoom: MapZoom.max,
         restriction: { latLngBounds: WORLD_BOUNDS, strictBounds: true },
       });
     }
 
     if (filters.mapStyle === 'Administrative' && filters.mapType === 'World') {
       map.setOptions({
-        minZoom: 3,
-        maxZoom: 10,
+        minZoom: MapZoom.administrative.min,
+        maxZoom: MapZoom.administrative.max,
         restriction: { latLngBounds: WORLD_BOUNDS, strictBounds: true },
       });
 
       map.panTo(WORLD_CENTER);
-      map.setZoom(3);
+      map.setZoom(MapZoom.administrative.default);
     }
 
     if (filters.mapStyle === 'Administrative' && filters.mapType === 'Continent' && filters.selectedContinent) {

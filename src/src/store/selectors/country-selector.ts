@@ -10,8 +10,10 @@ export const getCountriesSelector = (state: RootState) => countrySelector.select
 export const getCountryByIdSelector = (id: number) => (state: RootState) => countrySelector.selectById(state, id);
 export const getCountriesTotalSelector = (state: RootState) => countrySelector.selectTotal(state);
 
-export const getCountriesByContinentIdSelector = (continentId: number) => (state: RootState) =>
-  countrySelector.selectAll(state).filter(c => c.continentId === continentId);
+export const getCountriesByContinentIdSelector = createSelector(
+  [getCountriesSelector, (_: RootState, continentId: number) => continentId],
+  (countries, continentId) => countries.filter(c => c.continentId === continentId),
+);
 export const getCountryByCodeSelector = (code?: string) => (state: RootState) =>
   code ? countrySelector.selectAll(state).find(country => country.code === code) : undefined;
 
