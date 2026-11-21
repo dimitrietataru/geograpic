@@ -11,8 +11,9 @@ import { useAppDispatch } from '../../store';
 import { fetchAllContinents } from '../../store/thunks/continent-thunks';
 import { fetchAllCountries } from '../../store/thunks/country-thunks';
 import MapBreadcrumbs from '../map-explore/map-breadcrumbs';
+import MapCameraControl from './controls/map-camera-control';
 import MapStyleControl from './controls/map-style-control';
-import LayerWorld from './layers';
+import AdministrativeLayer from './layers/administrative-layer';
 
 const ZOOM = 3;
 const MIN_ZOOM = 3;
@@ -54,10 +55,8 @@ function MapExplore() {
         onZoomChanged={onZoomChange}
       >
         <MapStyleControl position={ControlPosition.LEFT_BOTTOM} />
-        {filters.mapStyle === 'Administrative' && filters.mapType === 'World' && zoom <= 5 && <LayerWorld />}
-        {/* <MapCameraController />
-        
-        {filters.mapType === 'Continent' && filters.selectedContinent === 'EU' && <LayerEurope />} */}
+        <MapCameraControl />
+        {filters.mapStyle === 'Administrative' && <AdministrativeLayer />}
       </AppMap>
     </Box>
   );

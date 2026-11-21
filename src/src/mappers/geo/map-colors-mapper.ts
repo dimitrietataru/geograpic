@@ -44,5 +44,5 @@ export const getContinentFillOpacity = (zoom: number): number => {
 };
 
 export const getContinentStrokeWeight = (zoom: number): number => {
-  return zoom <= 3 ? 0.6 : zoom <= 4 ? 0.4 : 0.2;
+  return zoom <= 3 ? 0.8 : zoom <= 4 ? 0.6 : 0.4;
 };
