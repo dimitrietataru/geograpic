@@ -7,4 +7,5 @@ export interface ExploreQuery {
   mapType?: MapType;
   selectedContinent?: string;
   selectedCountry?: string;
+  debug?: boolean;
 }

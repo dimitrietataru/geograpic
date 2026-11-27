@@ -9,6 +9,7 @@ const en = {
       default: 'Google',
       administrative: 'Administrative',
     },
+    debug: 'Depanare',
   },
 } as const;
 

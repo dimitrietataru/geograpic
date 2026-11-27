@@ -16,12 +16,14 @@ export function useExploreFilters() {
     const mapType = (searchParams.get('mapType') ?? 'World') as MapType;
     const selectedContinent = toString(searchParams.get('continent'));
     const selectedCountry = toString(searchParams.get('country'));
+    const debug = searchParams.get('debug') === 'true';
 
     return {
       mapStyle,
       mapType,
       selectedContinent,
       selectedCountry,
+      debug,
     };
   }, [searchParams]);
 
@@ -62,6 +64,14 @@ export function useExploreFilters() {
             next.set('country', toString(updates.selectedCountry));
           } else {
             next.delete('country');
+          }
+
+          if (updates.debug !== undefined) {
+            if (updates.debug) {
+              next.set('debug', 'true');
+            } else {
+              next.delete('debug');
+            }
           }
 
           return next;
