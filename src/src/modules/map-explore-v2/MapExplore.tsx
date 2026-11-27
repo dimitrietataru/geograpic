@@ -47,7 +47,7 @@ function MapExplore() {
         defaultZoom={zoom}
         minZoom={MapZoom.min}
         maxZoom={MapZoom.max}
-        isFractionalZoomEnabled={false}
+        // isFractionalZoomEnabled={false}
         onZoomChanged={onZoomChange}
       >
         <MapStyleControl position={ControlPosition.LEFT_BOTTOM} />

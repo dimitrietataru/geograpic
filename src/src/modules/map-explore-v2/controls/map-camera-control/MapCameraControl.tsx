@@ -6,10 +6,14 @@ import { MapZoom } from '../../../../constants/geo/map-zoom';
 import { useExploreFilters } from '../../../../hooks/filters/useExploreFilters';
 import { toBoundary } from '../../../../mappers/geo/boundaries-mapper';
 import { toCenter } from '../../../../mappers/geo/center-mapper';
+import { useAppSelector } from '../../../../store';
+import { getCountryByCodeSelector } from '../../../../store/selectors/country-selector';
 
 function MapCameraControl() {
   const map = useMap();
   const { filters } = useExploreFilters();
+
+  const country = useAppSelector(getCountryByCodeSelector(filters.selectedCountry));
 
   useEffect(() => {
     if (!map) {
@@ -42,7 +46,23 @@ function MapCameraControl() {
       map.panTo(center);
       map.fitBounds(boundary, 32);
     }
-  }, [map, filters.mapStyle, filters.mapType, filters.selectedContinent]);
+
+    if (filters.mapStyle === 'Administrative' && filters.mapType === 'Country' && country) {
+      const boundary = {
+        north: country.boundaryN,
+        south: country.boundaryS,
+        east: country.boundaryE,
+        west: country.boundaryW,
+      };
+      const center = {
+        lat: (country.boundaryN + country.boundaryS) / 2,
+        lng: (country.boundaryW + country.boundaryE) / 2,
+      };
+
+      map.panTo(center);
+      map.fitBounds(boundary, 64);
+    }
+  }, [map, filters.mapStyle, filters.mapType, filters.selectedContinent, country]);
 
   return null;
 }

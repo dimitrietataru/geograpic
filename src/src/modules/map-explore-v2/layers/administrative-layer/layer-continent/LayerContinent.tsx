@@ -111,11 +111,7 @@ function LayerContinent() {
   const { filters } = useExploreFilters();
   const continent = useAppSelector(getContinentByCodeSelector(filters.selectedContinent));
 
-  if (!continent) {
-    return null;
-  }
-
-  return <LayerContinentCountries continent={continent} />;
+  return <>{continent && <LayerContinentCountries continent={continent} />}</>;
 }
 
 export default LayerContinent;
