@@ -43,6 +43,7 @@ function MapCameraControl() {
       const boundary = toBoundary(filters.selectedContinent);
       const center = toCenter(filters.selectedContinent);
 
+      map.setOptions({ maxZoom: MapZoom.administrative.continent.max });
       map.panTo(center);
       map.fitBounds(boundary, 32);
     }
@@ -59,6 +60,7 @@ function MapCameraControl() {
         lng: (country.boundaryW + country.boundaryE) / 2,
       };
 
+      map.setOptions({ maxZoom: MapZoom.administrative.max });
       map.panTo(center);
       map.fitBounds(boundary, 64);
     }
